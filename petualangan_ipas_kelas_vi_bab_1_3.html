@@ -1,0 +1,2541 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Petualangan IPAS Kelas VI: Bab 1 - 3 | SDN Sekumpul 2</title>
+  <style>
+    /* ==========================================================================
+       1. VARIABEL TEMA & RESET DASAR (OFFLINE-READY, RAMAH ANAK & RESPONSIF)
+       ========================================================================== */
+    :root {
+      --bg-page: #f0f7ff;
+      --bg-card: #ffffff;
+      --bg-soft: #f8fafc;
+      --text-main: #1e293b;
+      --text-muted: #475569;
+      --border-light: #e2e8f0;
+
+      /* Warna Aksen Utama */
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --primary-light: #dbeafe;
+
+      /* Warna Per Bab */
+      --bab1: #059669;       /* Hijau Gizi & Pencernaan */
+      --bab1-light: #d1fae5;
+      --bab2: #0284c7;       /* Biru Langit & Pernapasan */
+      --bab2-light: #e0f2fe;
+      --bab3: #dc2626;       /* Merah Semangat Pahlawan */
+      --bab3-light: #fee2e2;
+      --kuis: #d97706;       /* Emas Tantangan */
+      --kuis-light: #fef3c7;
+
+      --radius-lg: 20px;
+      --radius-md: 14px;
+      --radius-sm: 10px;
+      --shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.06);
+      --shadow-md: 0 8px 24px rgba(15, 23, 42, 0.08);
+      --shadow-lg: 0 14px 32px rgba(37, 99, 235, 0.14);
+      --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: linear-gradient(180deg, #e0f2fe 0%, #f0f7ff 35%, #f8fafc 100%);
+      color: var(--text-main);
+      line-height: 1.6;
+      min-height: 100vh;
+      overflow-x: hidden;
+      padding-bottom: 40px;
+    }
+
+    /* ==========================================================================
+       2. HEADER & NAVIGASI UTAMA
+       ========================================================================== */
+    .app-header {
+      background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 55%, #0284c7 100%);
+      color: #ffffff;
+      padding: 18px 20px 24px;
+      border-bottom-left-radius: 28px;
+      border-bottom-right-radius: 28px;
+      box-shadow: var(--shadow-lg);
+      position: relative;
+    }
+
+    .header-top {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .school-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.16);
+      backdrop-filter: blur(4px);
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+    }
+
+    .header-controls {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-icon {
+      background: rgba(255, 255, 255, 0.18);
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: var(--transition);
+    }
+
+    .btn-icon:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: translateY(-1px);
+    }
+
+    .hero-title-wrap {
+      max-width: 1120px;
+      margin: 16px auto 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 16px;
+    }
+
+    .hero-title-wrap h1 {
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+    }
+
+    .hero-subtitle {
+      font-size: 0.95rem;
+      opacity: 0.92;
+      margin-top: 4px;
+    }
+
+    .student-pill {
+      background: #ffffff;
+      color: var(--text-main);
+      padding: 10px 16px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: var(--shadow-sm);
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .student-pill input {
+      border: 1.5px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 4px 10px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--primary-dark);
+      width: 150px;
+      outline: none;
+    }
+
+    .student-pill input:focus {
+      border-color: var(--primary);
+    }
+
+    /* Bar Navigasi Utama */
+    .main-nav {
+      max-width: 1120px;
+      margin: -18px auto 22px;
+      padding: 0 16px;
+      position: relative;
+      z-index: 10;
+    }
+
+    .nav-grid {
+      background: #ffffff;
+      padding: 8px;
+      border-radius: 20px;
+      box-shadow: var(--shadow-md);
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 8px;
+    }
+
+    @media (max-width: 820px) {
+      .nav-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .nav-grid .nav-btn:first-child {
+        grid-column: span 2;
+      }
+    }
+
+    .nav-btn {
+      border: none;
+      background: transparent;
+      padding: 12px 10px;
+      border-radius: 14px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: var(--transition);
+      text-align: center;
+    }
+
+    .nav-btn:hover {
+      background: #f1f5f9;
+      color: var(--text-main);
+    }
+
+    .nav-btn.active[data-tab="beranda"] { background: var(--primary); color: #fff; }
+    .nav-btn.active[data-tab="bab1"] { background: var(--bab1); color: #fff; }
+    .nav-btn.active[data-tab="bab2"] { background: var(--bab2); color: #fff; }
+    .nav-btn.active[data-tab="bab3"] { background: var(--bab3); color: #fff; }
+    .nav-btn.active[data-tab="kuis"] { background: var(--kuis); color: #fff; }
+
+    /* ==========================================================================
+       3. CONTAINER & KARTU UMUM
+       ========================================================================== */
+    .container {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 16px;
+    }
+
+    .tab-section {
+      display: none;
+      animation: fadeSlideUp 0.35s ease;
+    }
+
+    .tab-section.active {
+      display: block;
+    }
+
+    @keyframes fadeSlideUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .card {
+      background: var(--bg-card);
+      border-radius: var(--radius-lg);
+      padding: 22px;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border-light);
+      margin-bottom: 20px;
+    }
+
+    .section-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 18px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid #f1f5f9;
+    }
+
+    .section-title {
+      font-size: 1.35rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .badge-tag {
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 999px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    /* Sub-tab di dalam Bab */
+    .sub-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 20px;
+      background: #f1f5f9;
+      padding: 6px;
+      border-radius: 14px;
+    }
+
+    .sub-tab-btn {
+      flex: 1;
+      min-width: 140px;
+      border: none;
+      background: transparent;
+      padding: 10px 14px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .sub-tab-btn.active {
+      background: #ffffff;
+      color: var(--text-main);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .sub-panel {
+      display: none;
+    }
+
+    .sub-panel.active {
+      display: block;
+      animation: fadeSlideUp 0.25s ease;
+    }
+
+    /* Tombol Umum */
+    .btn {
+      border: none;
+      border-radius: 12px;
+      padding: 11px 18px;
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: var(--transition);
+    }
+
+    .btn:active { transform: scale(0.97); }
+    .btn-primary { background: var(--primary); color: #fff; }
+    .btn-primary:hover { background: var(--primary-dark); }
+    .btn-bab1 { background: var(--bab1); color: #fff; }
+    .btn-bab2 { background: var(--bab2); color: #fff; }
+    .btn-bab3 { background: var(--bab3); color: #fff; }
+    .btn-kuis { background: var(--kuis); color: #fff; }
+    .btn-outline { background: #fff; border: 2px solid #cbd5e1; color: var(--text-main); }
+    .btn-outline:hover { background: #f8fafc; border-color: #94a3b8; }
+
+    /* ==========================================================================
+       4. KOMPONEN PEMBELAJARAN MENDALAM (MINDFUL, MEANINGFUL, JOYFUL)
+       ========================================================================== */
+    .mindful-box {
+      background: linear-gradient(135deg, #fefce8 0%, #fffbeb 100%);
+      border: 2px solid #fde68a;
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    .mindful-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      color: #92400e;
+      font-size: 1.05rem;
+      margin-bottom: 10px;
+    }
+
+    .mood-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 12px 0;
+    }
+
+    .mood-btn {
+      background: #ffffff;
+      border: 2px solid #fcd34d;
+      border-radius: 12px;
+      padding: 8px 14px;
+      font-weight: 700;
+      font-size: 0.88rem;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .mood-btn.selected {
+      background: #f59e0b;
+      color: #ffffff;
+      border-color: #d97706;
+      transform: scale(1.04);
+    }
+
+    .essential-q {
+      background: rgba(255, 255, 255, 0.85);
+      padding: 12px 16px;
+      border-radius: 12px;
+      border-left: 4px solid #f59e0b;
+      font-size: 0.92rem;
+      color: #78350f;
+      margin-top: 10px;
+    }
+
+    /* Jurnal Refleksi Akhir Bab */
+    .reflection-box {
+      background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%);
+      border: 2px solid #a7f3d0;
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      margin-top: 24px;
+    }
+
+    .reflection-box textarea {
+      width: 100%;
+      min-height: 85px;
+      border: 1.5px solid #6ee7b7;
+      border-radius: 12px;
+      padding: 12px;
+      font-family: inherit;
+      font-size: 0.92rem;
+      margin: 10px 0;
+      resize: vertical;
+      outline: none;
+    }
+
+    .reflection-box textarea:focus {
+      border-color: #059669;
+      box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.12);
+    }
+
+    /* Lencana / Badges */
+    .badge-bar {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 12px;
+    }
+
+    .badge-item {
+      background: #f8fafc;
+      border: 2px dashed #cbd5e1;
+      border-radius: 16px;
+      padding: 14px;
+      text-align: center;
+      transition: var(--transition);
+      opacity: 0.65;
+    }
+
+    .badge-item.unlocked {
+      background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+      border: 2px solid #f59e0b;
+      opacity: 1;
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .badge-icon {
+      font-size: 2.1rem;
+      margin-bottom: 6px;
+      display: block;
+    }
+
+    .badge-name {
+      font-weight: 800;
+      font-size: 0.9rem;
+      color: var(--text-main);
+    }
+
+    .badge-desc {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    /* ==========================================================================
+       5. GRID & LAYOUT INTERAKTIF KHUSUS MATERI
+       ========================================================================== */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1.15fr;
+      gap: 20px;
+      align-items: start;
+    }
+
+    @media (max-width: 820px) {
+      .two-col { grid-template-columns: 1fr; }
+    }
+
+    .grid-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+      gap: 14px;
+    }
+
+    /* Flip Card (Kartu Bolak-Balik Joyful) */
+    .flip-card {
+      background: transparent;
+      height: 195px;
+      perspective: 1000px;
+      cursor: pointer;
+    }
+
+    .flip-card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      transition: transform 0.55s cubic-bezier(0.4, 0.2, 0.2, 1);
+      transform-style: preserve-3d;
+    }
+
+    .flip-card.flipped .flip-card-inner {
+      transform: rotateY(180deg);
+    }
+
+    .flip-front, .flip-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 16px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      box-shadow: var(--shadow-sm);
+      border: 1.5px solid var(--border-light);
+    }
+
+    .flip-front {
+      background: #ffffff;
+    }
+
+    .flip-back {
+      background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+      color: #ffffff;
+      transform: rotateY(180deg);
+      font-size: 0.88rem;
+      line-height: 1.45;
+    }
+
+    .flip-back.blue-theme {
+      background: linear-gradient(135deg, #0284c7 0%, #0ea5e9 100%);
+    }
+
+    .flip-back.red-theme {
+      background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%);
+    }
+
+    /* Organ SVG Interaktif */
+    .svg-stage {
+      background: #f8fafc;
+      border: 2px solid #e2e8f0;
+      border-radius: 18px;
+      padding: 14px;
+      text-align: center;
+    }
+
+    .organ-hotspot {
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .organ-hotspot:hover {
+      filter: brightness(1.1);
+      transform: scale(1.03);
+      transform-origin: center;
+    }
+
+    .organ-btn-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+      justify-content: center;
+    }
+
+    .organ-chip {
+      border: 1.5px solid #cbd5e1;
+      background: #fff;
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .organ-chip.active {
+      background: var(--bab1);
+      color: #fff;
+      border-color: var(--bab1);
+    }
+
+    .organ-chip.active-blue {
+      background: var(--bab2);
+      color: #fff;
+      border-color: var(--bab2);
+    }
+
+    .info-panel {
+      background: #f8fafc;
+      border-left: 5px solid var(--bab1);
+      border-radius: 14px;
+      padding: 18px;
+    }
+
+    .info-panel.blue { border-left-color: var(--bab2); }
+    .info-panel.red { border-left-color: var(--bab3); }
+
+    /* Simulasi Isi Piringku */
+    .plate-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .plate-circle {
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      border: 10px solid #e2e8f0;
+      background: #ffffff;
+      box-shadow: inset 0 4px 12px rgba(0,0,0,0.08), var(--shadow-md);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .plate-quadrant {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 10px;
+      text-align: center;
+      font-size: 0.78rem;
+      font-weight: 700;
+      border: 1px dashed #cbd5e1;
+      transition: var(--transition);
+    }
+
+    .plate-quadrant.filled {
+      background: #d1fae5;
+      color: #065f46;
+    }
+
+    /* Kalkulator Input */
+    .calc-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+      margin-top: 12px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 5px;
+      color: var(--text-main);
+    }
+
+    .form-group input, .form-group select {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 10px;
+      font-size: 0.95rem;
+      outline: none;
+    }
+
+    .form-group input:focus {
+      border-color: var(--primary);
+    }
+
+    /* Mini Game Sortir Makanan */
+    .game-arena {
+      background: linear-gradient(135deg, #ecfdf5 0%, #f0f9ff 100%);
+      border: 2px solid #a7f3d0;
+      border-radius: 18px;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .food-card-game {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 18px;
+      max-width: 380px;
+      margin: 14px auto;
+      box-shadow: var(--shadow-md);
+      border: 2px solid #e2e8f0;
+    }
+
+    /* Simulasi Pernapasan */
+    .lung-sim-box {
+      background: linear-gradient(180deg, #e0f2fe 0%, #f0f9ff 100%);
+      border: 2px solid #bae6fd;
+      border-radius: 18px;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .lung-visual {
+      width: 220px;
+      height: 190px;
+      margin: 10px auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 1.2s ease-in-out;
+    }
+
+    .lung-visual.inhale {
+      transform: scale(1.18);
+    }
+
+    .lung-visual.exhale {
+      transform: scale(0.9);
+    }
+
+    /* Kuis Interaktif */
+    .quiz-option {
+      width: 100%;
+      text-align: left;
+      background: #f8fafc;
+      border: 2px solid #e2e8f0;
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin-bottom: 10px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .quiz-option:hover:not(:disabled) {
+      border-color: var(--kuis);
+      background: #fffbeb;
+    }
+
+    .quiz-option.correct {
+      background: #d1fae5;
+      border-color: #059669;
+      color: #065f46;
+    }
+
+    .quiz-option.wrong {
+      background: #fee2e2;
+      border-color: #dc2626;
+      color: #991b1b;
+    }
+
+    .opt-letter {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: #e2e8f0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+
+    .quiz-option.correct .opt-letter { background: #059669; color: #fff; }
+    .quiz-option.wrong .opt-letter { background: #dc2626; color: #fff; }
+
+    /* Toast Notifikasi (Pengganti alert) */
+    .toast-box {
+      position: fixed;
+      bottom: 22px;
+      right: 22px;
+      background: #1e293b;
+      color: #ffffff;
+      padding: 14px 20px;
+      border-radius: 14px;
+      box-shadow: var(--shadow-lg);
+      font-weight: 600;
+      font-size: 0.92rem;
+      z-index: 9999;
+      transform: translateY(120px);
+      opacity: 0;
+      transition: all 0.3s ease;
+      max-width: 340px;
+    }
+
+    .toast-box.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    /* Tabel Rapi */
+    .table-wrap {
+      overflow-x: auto;
+      margin: 12px 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+    }
+
+    th, td {
+      padding: 10px 12px;
+      border: 1px solid #e2e8f0;
+      text-align: left;
+    }
+
+    th {
+      background: #f1f5f9;
+      font-weight: 700;
+    }
+
+    /* Footer */
+    .app-footer {
+      max-width: 1120px;
+      margin: 28px auto 0;
+      padding: 18px 20px;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.86rem;
+      border-top: 1px solid #cbd5e1;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========================================================================
+       HEADER UTAMA
+       ======================================================================== -->
+  <header class="app-header">
+    <div class="header-top">
+      <div class="school-badge">
+        🏫 SDN Sekumpul 2 • Fase C (Kelas VI) • Kurikulum Merdeka (Revisi 2025)
+      </div>
+      <div class="header-controls">
+        <button class="btn-icon" id="soundToggleBtn" onclick="toggleSound()">
+          🔊 Suara: Aktif
+        </button>
+        <button class="btn-icon" onclick="resetAllProgress()">
+          🔄 Reset Progres
+        </button>
+      </div>
+    </div>
+
+    <div class="hero-title-wrap">
+      <div>
+        <h1>🚀 Petualangan IPAS Kelas VI: Bab 1 - 3</h1>
+        <p class="hero-subtitle">Media Pembelajaran Mendalam (Mindful, Meaningful, Joyful) • Disusun oleh <strong>Muhammad Agus Salim, S.Pd.</strong></p>
+      </div>
+      <div class="student-pill">
+        <span>🧑‍🎓 Nama Siswa:</span>
+        <input type="text" id="studentNameInput" placeholder="Ketik namamu..." onchange="saveStudentName()">
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================================================
+       NAVIGASI ANTAR BAB
+       ======================================================================== -->
+  <nav class="main-nav">
+    <div class="nav-grid">
+      <button class="nav-btn active" data-tab="beranda" onclick="switchTab('beranda')">
+        🏠 Beranda & Lencana
+      </button>
+      <button class="nav-btn" data-tab="bab1" onclick="switchTab('bab1')">
+        🥗 Bab 1: Pencernaan
+      </button>
+      <button class="nav-btn" data-tab="bab2" onclick="switchTab('bab2')">
+        🫁 Bab 2: Pernapasan
+      </button>
+      <button class="nav-btn" data-tab="bab3" onclick="switchTab('bab3')">
+        🇮🇩 Bab 3: Pahlawan
+      </button>
+      <button class="nav-btn" data-tab="kuis" onclick="switchTab('kuis')">
+        🏆 Kuis 15 Soal
+      </button>
+    </div>
+  </nav>
+
+  <main class="container">
+
+    <!-- ======================================================================
+         TAB 0: BERANDA & DASHBOARD LENCANA PENCAPAIAN
+         ====================================================================== -->
+    <section id="tab-beranda" class="tab-section active">
+      <div class="card" style="background: linear-gradient(135deg, #ffffff 0%, #eff6ff 100%);">
+        <div class="section-header">
+          <h2 class="section-title">👋 Selamat Datang, <span id="greetingName">Sahabat IPAS</span>!</h2>
+          <span class="badge-tag" style="background: var(--primary-light); color: var(--primary-dark);">100% Offline Ready</span>
+        </div>
+        <p style="margin-bottom: 16px; color: var(--text-muted);">
+          Ayo menjelajahi keajaiban tubuh manusia dan jejak perjuangan para pahlawan bangsa! Aplikasi ini dirancang khusus untuk siswa <strong>Kelas VI SDN Sekumpul 2</strong> berdasarkan <em>Buku Siswa IPAS Kelas VI Edisi Revisi 2025</em>.
+        </p>
+
+        <!-- Kartu Peta Petualangan 3 Bab -->
+        <div class="grid-cards" style="grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));">
+          <div class="card" style="border-top: 5px solid var(--bab1); margin-bottom: 0;">
+            <span class="badge-tag" style="background: var(--bab1-light); color: var(--bab1);">BAB 1</span>
+            <h3 style="margin: 10px 0 6px; font-size: 1.15rem;">Makanan Bergizi untuk Kesehatan Pencernaanmu</h3>
+            <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 14px;">
+              Jelajahi organ pencernaan, pedoman Isi Piringku, batas GGL (G4-G1-L5), dan mini-game sortir makanan!
+            </p>
+            <button class="btn btn-bab1" style="width: 100%;" onclick="switchTab('bab1')">Mulai Bab 1 →</button>
+          </div>
+
+          <div class="card" style="border-top: 5px solid var(--bab2); margin-bottom: 0;">
+            <span class="badge-tag" style="background: var(--bab2-light); color: var(--bab2);">BAB 2</span>
+            <h3 style="margin: 10px 0 6px; font-size: 1.15rem;">Tarik dan Embuskan</h3>
+            <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 14px;">
+              Simulasi inspirasi & ekspirasi diafragma, kenali polutan udara, penyakit pernapasan, dan bahaya rokok/vape.
+            </p>
+            <button class="btn btn-bab2" style="width: 100%;" onclick="switchTab('bab2')">Mulai Bab 2 →</button>
+          </div>
+
+          <div class="card" style="border-top: 5px solid var(--bab3); margin-bottom: 0;">
+            <span class="badge-tag" style="background: var(--bab3-light); color: var(--bab3);">BAB 3</span>
+            <h3 style="margin: 10px 0 6px; font-size: 1.15rem;">Jejak Sang Pahlawan</h3>
+            <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 14px;">
+              Pelajari Tanam Paksa, Politik Etis, Pahlawan Nasional (termasuk Pangeran Antasari dari Kalsel!), dan warisannya.
+            </p>
+            <button class="btn btn-bab3" style="width: 100%;" onclick="switchTab('bab3')">Mulai Bab 3 →</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Koleksi Lencana Pencapaian (Joyful Gamification) -->
+      <div class="card">
+        <div class="section-header">
+          <h2 class="section-title">🏅 Koleksi Lencana Petualang IPAS</h2>
+          <span id="badgeCountText" style="font-weight: 700; color: var(--primary);">0 / 6 Lencana Terbuka</span>
+        </div>
+        <div class="badge-bar">
+          <div class="badge-item" id="badge-mindful">
+            <span class="badge-icon">🧘</span>
+            <div class="badge-name">Pelajar Berkesadaran</div>
+            <div class="badge-desc">Mengisi Cek Kesiapan & Fokus Belajar</div>
+          </div>
+          <div class="badge-item" id="badge-piring">
+            <span class="badge-icon">🍽️</span>
+            <div class="badge-name">Koki Gizi Seimbang</div>
+            <div class="badge-desc">Menyusun simulasi Isi Piringku</div>
+          </div>
+          <div class="badge-item" id="badge-game">
+            <span class="badge-icon">🎮</span>
+            <div class="badge-name">Detektif Makanan Sehat</div>
+            <div class="badge-desc">Menyelesaikan mini-game sortir makanan</div>
+          </div>
+          <div class="badge-item" id="badge-napas">
+            <span class="badge-icon">🌬️</span>
+            <div class="badge-name">Penjaga Paru-Paru</div>
+            <div class="badge-desc">Mencoba simulator inspirasi-ekspirasi</div>
+          </div>
+          <div class="badge-item" id="badge-pahlawan">
+            <span class="badge-icon">🎖️</span>
+            <div class="badge-name">Pejuang Muda Kalsel</div>
+            <div class="badge-desc">Menjelajahi profil Pahlawan Nasional</div>
+          </div>
+          <div class="badge-item" id="badge-master">
+            <span class="badge-icon">🏆</span>
+            <div class="badge-name">Bintang IPAS Sekumpul 2</div>
+            <div class="badge-desc">Meraih skor ≥ 80 di Kuis 15 Soal</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         TAB 1: BAB 1 - MAKANAN BERGIZI UNTUK KESEHATAN PENCERNAANMU
+         ====================================================================== -->
+    <section id="tab-bab1" class="tab-section">
+      <!-- Mindful: Cek Kesiapan & Fokus Belajar -->
+      <div class="mindful-box">
+        <div class="mindful-header">
+          <span>🧘 Cek Kesiapan & Fokus Belajar (Mindful Learning) — Bab 1</span>
+        </div>
+        <p style="font-size: 0.9rem; color: #78350f;">
+          Tarik napas perlahan, rasakan perutmu. Apakah kamu sudah sarapan bergizi hari ini? Pilih perasaanmu sebelum belajar:
+        </p>
+        <div class="mood-grid">
+          <button class="mood-btn" onclick="selectMood(this, 'bab1')">😄 Semangat & Siap!</button>
+          <button class="mood-btn" onclick="selectMood(this, 'bab1')">🤔 Penasaran Banget</button>
+          <button class="mood-btn" onclick="selectMood(this, 'bab1')">😌 Tenang & Fokus</button>
+          <button class="mood-btn" onclick="selectMood(this, 'bab1')">😋 Sedikit Lapar Nih</button>
+        </div>
+        <div class="essential-q">
+          <strong>💡 Pertanyaan Esensial:</strong> Bagaimana makanan yang kita makan setiap hari diubah menjadi energi, dan bagaimana cara menjaga sistem pencernaan agar tetap sehat?
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="section-header">
+          <h2 class="section-title" style="color: var(--bab1);">🥗 Bab 1: Makanan Bergizi untuk Kesehatan Pencernaanmu</h2>
+          <span class="badge-tag" style="background: var(--bab1-light); color: var(--bab1);">3 Topik Utama</span>
+        </div>
+
+        <!-- Sub-Tab Navigasi Bab 1 -->
+        <div class="sub-tabs">
+          <button class="sub-tab-btn active" onclick="switchSubTab('bab1', 0, this)">A. Cara Kerja Pencernaan</button>
+          <button class="sub-tab-btn" onclick="switchSubTab('bab1', 1, this)">B. Makanan Sehat & GGL</button>
+          <button class="sub-tab-btn" onclick="switchSubTab('bab1', 2, this)">C. Pencernaan Sehat & Game</button>
+        </div>
+
+        <!-- SUB-PANEL 1A: CARA KERJA SISTEM PENCERNAAN -->
+        <div class="sub-panel active" id="bab1-panel-0">
+          <div class="two-col">
+            <!-- Ilustrasi SVG Interaktif Organ Pencernaan -->
+            <div class="svg-stage">
+              <p style="font-weight: 700; font-size: 0.88rem; margin-bottom: 8px; color: var(--bab1);">
+                👆 Klik Organ pada Gambar atau Tombol di Bawah:
+              </p>
+              <svg viewBox="0 0 260 360" width="230" height="310" style="max-width: 100%; height: auto;">
+                <!-- Siluet Badan -->
+                <path d="M90,20 C90,5 170,5 170,20 L175,65 L215,90 L205,210 L185,210 L185,345 L75,345 L75,210 L55,210 L45,90 L85,65 Z" fill="#e2e8f0" stroke="#94a3b8" stroke-width="2"/>
+                <!-- 1. Mulut -->
+                <ellipse class="organ-hotspot" cx="130" cy="42" rx="18" ry="9" fill="#f43f5e" onclick="showDigestOrgan('mulut')"/>
+                <!-- 2. Kerongkongan -->
+                <rect class="organ-hotspot" x="124" y="51" width="12" height="68" rx="4" fill="#fb923c" onclick="showDigestOrgan('kerongkongan')"/>
+                <!-- 4. Hati & Empedu -->
+                <path class="organ-hotspot" d="M92,122 Q130,112 135,142 Q105,155 92,140 Z" fill="#991b1b" onclick="showDigestOrgan('hati')"/>
+                <!-- 3. Lambung -->
+                <path class="organ-hotspot" d="M132,118 C165,115 175,155 142,168 C125,172 122,145 132,118 Z" fill="#f59e0b" onclick="showDigestOrgan('lambung')"/>
+                <!-- 6. Usus Besar (Bingkai luar) -->
+                <path class="organ-hotspot" d="M95,180 L165,180 L165,255 L135,255 L135,275 L125,275 L125,245 L152,245 L152,193 L108,193 L108,255 L95,255 Z" fill="#10b981" onclick="showDigestOrgan('usus_besar')"/>
+                <!-- 5. Usus Halus (Gulungan dalam) -->
+                <rect class="organ-hotspot" x="110" y="196" width="40" height="46" rx="10" fill="#ec4899" onclick="showDigestOrgan('usus_halus')"/>
+                <!-- 7. Rektum & Anus -->
+                <rect class="organ-hotspot" x="124" y="276" width="12" height="24" rx="4" fill="#6366f1" onclick="showDigestOrgan('rektum_anus')"/>
+              </svg>
+
+              <div class="organ-btn-list" id="digestChipList">
+                <button class="organ-chip active" onclick="showDigestOrgan('mulut')">1. Mulut</button>
+                <button class="organ-chip" onclick="showDigestOrgan('kerongkongan')">2. Kerongkongan</button>
+                <button class="organ-chip" onclick="showDigestOrgan('lambung')">3. Lambung</button>
+                <button class="organ-chip" onclick="showDigestOrgan('hati')">4. Hati & Empedu</button>
+                <button class="organ-chip" onclick="showDigestOrgan('usus_halus')">5. Usus Halus</button>
+                <button class="organ-chip" onclick="showDigestOrgan('usus_besar')">6. Usus Besar</button>
+                <button class="organ-chip" onclick="showDigestOrgan('rektum_anus')">7. Rektum & Anus</button>
+              </div>
+            </div>
+
+            <!-- Penjelasan Organ Terpilih + Perbedaan Mekanis & Kimiawi -->
+            <div>
+              <div class="info-panel" id="digestOrganDetail">
+                <h3 style="color: var(--bab1); margin-bottom: 6px;">1. Mulut (Gerbang Utama Pencernaan)</h3>
+                <p style="font-size: 0.92rem; margin-bottom: 8px;">
+                  Di dalam mulut terjadi <strong>pencernaan mekanis</strong> oleh gigi dan lidah yang mengunyah makanan menjadi potongan kecil, serta <strong>pencernaan kimiawi</strong> oleh air liur (enzim amilase/ptialin) yang mengubah zat tepung (amilum) menjadi gula sederhana.
+                </p>
+                <span class="badge-tag" style="background: #d1fae5; color: #065f46;">Mekanis + Kimiawi</span>
+              </div>
+
+              <div class="card" style="margin-top: 16px; background: #f0fdf4; border-color: #bbf7d0;">
+                <h4 style="color: #065f46; margin-bottom: 8px;">⚙️ Perbedaan Pencernaan Mekanis vs Kimiawi</h4>
+                <div class="table-wrap">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Aspek</th>
+                        <th>Pencernaan Mekanis</th>
+                        <th>Pencernaan Kimiawi</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><strong>Cara Kerja</strong></td>
+                        <td>Mengubah ukuran makanan dari besar menjadi kecil secara fisik.</td>
+                        <td>Mengubah zat makanan kompleks menjadi sari makanan dengan bantuan enzim.</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Alat/Zat</strong></td>
+                        <td>Gigi (mengunyah), otot kerongkongan (gerak peristaltik), otot lambung (meremas).</td>
+                        <td>Enzim pencernaan (amilase di mulut, pepsin & asam klorida di lambung, enzim di usus halus).</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SUB-PANEL 1B: MAKANAN SEHAT UNTUK TUBUHKU (7 NUTRISI, ISI PIRINGKU, GGL) -->
+        <div class="sub-panel" id="bab1-panel-1">
+          <h3 style="margin-bottom: 6px; color: var(--bab1);">🍎 7 Nutrisi Utama yang Dibutuhkan Tubuh (Klik Kartu untuk Membalik!)</h3>
+          <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 14px;">Sentuh atau klik setiap kartu nutrisi untuk melihat fungsi dan contoh makanannya.</p>
+
+          <div class="grid-cards" style="margin-bottom: 24px;">
+            <div class="flip-card" onclick="flipCard(this)">
+              <div class="flip-card-inner">
+                <div class="flip-front"><span style="font-size: 2.3rem;">🍚</span><h4>1. Karbohidrat</h4><small>Klik untuk detail</small></div>
+                <div class="flip-back"><strong>Sumber Energi Utama!</strong><br>Memberi tenaga untuk belajar & bermain.<br>Contoh: Nasi, jagung, roti gandum, kentang, singkong.</div>
+              </div>
+            </div>
+            <div class="flip-card" onclick="flipCard(this)">
+              <div class="flip-card-inner">
+                <div class="flip-front"><span style="font-size: 2.3rem;">🐟</span><h4>2. Protein</h4><small>Klik untuk detail</small></div>
+                <div class="flip-back"><strong>Zat Pembangun & Perbaikan Sel!</strong><br>Membantu pertumbuhan tubuh.<br>Contoh: Ikan haruan/patin, telur, ayam, tempe, tahu, kacang-kacangan.</div>
+              </div>
+            </div>
+            <div class="flip-card" onclick="flipCard(this)">
+              <div class="flip-card-inner">
+                <div class="flip-front"><span style="font-size: 2.3rem;">🥑</span><h4>3. Lemak</h4><small>Klik untuk detail</small></div>
+                <div class="flip-back"><strong>Cadangan Energi & Pelarut Vitamin A, D, E, K!</strong><br>Melindungi organ tubuh.<br>Contoh: Alpukat, minyak zaitun, kacang almond, ikan laut.</div>
+              </div>
+            </div>
+            <div class="flip-card" onclick="flipCard(this)">
+              <div class="flip-card-inner">
+                <div class="flip-front"><span style="font-size: 2.3rem;">🍊</span><h4>4. Vitamin</h4><small>Klik untuk detail</small></div>
+                <div class="flip-back"><strong>Zat Pengatur & Daya Tahan Tubuh!</strong><br>Mencegah berbagai penyakit.<br>Contoh: Jeruk (Vit C), wortel (Vit A), sinar matahari pagi (Vit D).</div>
+              </div>
+            </div>
+            <div class="flip-card" onclick="flipCard(this)">
+              <div class="flip-card-inner">
+                <div class="flip-front"><span style="font-size: 2.3rem;">🥛</span><h4>5. Mineral</h4><small>Klik untuk detail</small></div>
+                <div class="flip-back"><strong>Menjaga Fungsi Organ & Tulang!</strong><br>Kalsium untuk tulang kuat, zat besi untuk darah.<br>Contoh: Susu, bayam, ikan teri, garam beryodium.</div>
+              </div>
+            </div>
+            <div class="flip-card" onclick="flipCard(this)">
+              <div class="flip-card-inner">
+                <div class="flip-front"><span style="font-size: 2.3rem;">🥦</span><h4>6. Serat</h4><small>Klik untuk detail</small></div>
+                <div class="flip-back"><strong>Melancarkan Pencernaan!</strong><br>Mencegah sembelit dan menyehatkan usus.<br>Contoh: Sayur kangkung, bayam, pepaya, pisang, apel.</div>
+              </div>
+            </div>
+            <div class="flip-card" onclick="flipCard(this)">
+              <div class="flip-card-inner">
+                <div class="flip-front"><span style="font-size: 2.3rem;">💧</span><h4>7. Air</h4><small>Klik untuk detail</small></div>
+                <div class="flip-back"><strong>Pelarut Zat Gizi & Pengatur Suhu Tubuh!</strong><br>Minum minimal 8 gelas (±2 liter) air putih setiap hari.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Simulasi Interaktif Pedoman "Isi Piringku" Kemenkes -->
+          <div class="two-col" style="margin-bottom: 22px;">
+            <div class="card" style="background: #f8fafc; margin-bottom: 0;">
+              <h3 style="color: var(--bab1); margin-bottom: 8px;">🍽️ Simulasi "Isi Piringku" Kemenkes RI</h3>
+              <p style="font-size: 0.88rem; margin-bottom: 12px;">
+                Menurut Kemenkes, <strong>1/2 piring</strong> berisi sayur dan buah, sedangkan <strong>1/2 piring</strong> lainnya berisi makanan pokok dan lauk pauk. Klik menu di bawah untuk mengisi piring sehatmu!
+              </p>
+              <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px;">
+                <button class="btn btn-outline" onclick="fillPlate('pokok', '🍚 Nasi Merah / Jagung')">+ Makanan Pokok (2/3 dari ½)</button>
+                <button class="btn btn-outline" onclick="fillPlate('lauk', '🐟 Ikan Patin & Tempe')">+ Lauk Pauk (1/3 dari ½)</button>
+                <button class="btn btn-outline" onclick="fillPlate('sayur', '🥬 Sayur Bayam & Wortel')">+ Sayuran (2/3 dari ½)</button>
+                <button class="btn btn-outline" onclick="fillPlate('buah', '🍌 Pisang & Pepaya')">+ Buah-buahan (1/3 dari ½)</button>
+              </div>
+              <button class="btn btn-bab1" onclick="resetPlate()">🔄 Kosongkan Piring</button>
+            </div>
+
+            <div class="plate-wrapper">
+              <div class="plate-circle">
+                <div class="plate-quadrant" id="pq-pokok">1. Makanan Pokok<br><small>(Belum diisi)</small></div>
+                <div class="plate-quadrant" id="pq-sayur">3. Sayuran<br><small>(Belum diisi)</small></div>
+                <div class="plate-quadrant" id="pq-lauk">2. Lauk Pauk<br><small>(Belum diisi)</small></div>
+                <div class="plate-quadrant" id="pq-buah">4. Buah-buahan<br><small>(Belum diisi)</small></div>
+              </div>
+              <div id="plateStatus" style="font-weight: 700; font-size: 0.9rem; color: var(--bab1); text-align: center;">
+                Lengkapi 4 bagian piring sesuai pedoman Isi Piringku!
+              </div>
+            </div>
+          </div>
+
+          <!-- Informasi Nilai Gizi & Kalkulator Batas GGL (G4-G1-L5) -->
+          <div class="card" style="background: #fffbeb; border-color: #fde68a; margin-bottom: 0;">
+            <h3 style="color: #92400e; margin-bottom: 6px;">🏷️ Membaca Informasi Nilai Gizi & Batas GGL Harian (G4 - G1 - L5)</h3>
+            <p style="font-size: 0.9rem; margin-bottom: 12px;">
+              Sebelum membeli jajanan kemasan, selalu periksa label <strong>Informasi Nilai Gizi</strong> (perhatikan <em>Takaran Saji</em> dan <em>% AKG</em>). Kemenkes menetapkan batas konsumsi harian <strong>G4 - G1 - L5</strong>:
+            </p>
+            <div class="grid-cards" style="grid-template-columns: repeat(3, 1fr); margin-bottom: 16px;">
+              <div style="background: #fff; padding: 12px; border-radius: 12px; text-align: center; border: 1px solid #fcd34d;">
+                <strong>🍬 GULA (G4)</strong><br>Maks. <strong>4 sdm</strong> (50 gram)/hari
+              </div>
+              <div style="background: #fff; padding: 12px; border-radius: 12px; text-align: center; border: 1px solid #fcd34d;">
+                <strong>🧂 GARAM (G1)</strong><br>Maks. <strong>1 sdt</strong> (5 gram / 2000 mg Natrium)/hari
+              </div>
+              <div style="background: #fff; padding: 12px; border-radius: 12px; text-align: center; border: 1px solid #fcd34d;">
+                <strong>🍟 LEMAK (L5)</strong><br>Maks. <strong>5 sdm</strong> (67 gram)/hari
+              </div>
+            </div>
+
+            <h4 style="color: #92400e;">🧮 Kalkulator Cek Batas GGL Harianmu:</h4>
+            <div class="calc-grid">
+              <div class="form-group">
+                <label>Konsumsi Gula Hari Ini (gram):</label>
+                <input type="number" id="inGula" placeholder="Contoh: 30" min="0">
+              </div>
+              <div class="form-group">
+                <label>Konsumsi Garam Hari Ini (gram):</label>
+                <input type="number" id="inGaram" placeholder="Contoh: 4" min="0" step="0.5">
+              </div>
+              <div class="form-group">
+                <label>Konsumsi Lemak Hari Ini (gram):</label>
+                <input type="number" id="inLemak" placeholder="Contoh: 45" min="0">
+              </div>
+            </div>
+            <button class="btn btn-kuis" style="margin-top: 12px;" onclick="cekGGL()">Periksa Status GGL</button>
+            <div id="hasilGGL" style="margin-top: 12px; font-weight: 700; font-size: 0.92rem;"></div>
+          </div>
+        </div>
+
+        <!-- SUB-PANEL 1C: PENCERNAAN SEHAT, TUBUH KUAT & MINI-GAME -->
+        <div class="sub-panel" id="bab1-panel-2">
+          <!-- Fenomena Mokbang & Makanan Rekreasional -->
+          <div class="card" style="background: #fef2f2; border-color: #fecaca;">
+            <h3 style="color: #991b1b; margin-bottom: 6px;">📺 Waspada Tren Mokbang & Makanan Rekreasional!</h3>
+            <p style="font-size: 0.9rem;">
+              <strong>Mokbang</strong> adalah tren makan dalam porsi sangat besar di depan kamera. Makan berlebihan memaksa lambung bekerja keras, memicu obesitas, dan gangguan pencernaan. Bedakan antara <strong>makanan pokok bergizi</strong> dengan <strong>makanan rekreasional</strong> (jajanan tinggi gula, garam, lemak seperti minuman boba manis, keripik asin, gorengan berlebih) yang hanya boleh dikonsumsi sesekali dalam jumlah kecil.
+            </p>
+          </div>
+
+          <!-- Penyakit Sistem Pencernaan -->
+          <h3 style="margin-bottom: 10px; color: var(--bab1);">🩺 Gangguan & Penyakit pada Sistem Pencernaan</h3>
+          <div class="grid-cards" style="margin-bottom: 20px;">
+            <div class="card" style="margin-bottom: 0; border-left: 4px solid #f59e0b;">
+              <h4>1. Maag (Gastritis) & GERD</h4>
+              <p style="font-size: 0.86rem; color: var(--text-muted); margin-top: 4px;">
+                <strong>Maag:</strong> Peradangan dinding lambung akibat telat makan, makanan terlalu pedas/asam, atau stres.<br>
+                <strong>GERD:</strong> Naiknya asam lambung ke kerongkongan sehingga dada terasa panas terbakar (<em>heartburn</em>).
+              </p>
+            </div>
+            <div class="card" style="margin-bottom: 0; border-left: 4px solid #ef4444;">
+              <h4>2. Obesitas (Kegemukan Berlebih)</h4>
+              <p style="font-size: 0.86rem; color: var(--text-muted); margin-top: 4px;">
+                Penumpukan lemak berlebih karena asupan energi lebih besar daripada energi yang digunakan bergerak. Meningkatkan risiko penyakit jantung & diabetes.
+              </p>
+            </div>
+            <div class="card" style="margin-bottom: 0; border-left: 4px solid #8b5cf6;">
+              <h4>3. Diabetes Melitus Tipe 1</h4>
+              <p style="font-size: 0.86rem; color: var(--text-muted); margin-top: 4px;">
+                Gangguan pada pankreas yang tidak mampu menghasilkan cukup hormon <strong>insulin</strong> untuk mengatur kadar gula darah. Sering terdeteksi sejak usia anak/remaja.
+              </p>
+            </div>
+            <div class="card" style="margin-bottom: 0; border-left: 4px solid #0ea5e9;">
+              <h4>4. Diare</h4>
+              <p style="font-size: 0.86rem; color: var(--text-muted); margin-top: 4px;">
+                Buang air besar encer dan sering akibat infeksi bakteri/virus dari makanan kurang higienis. Pertolongan pertama: minum cairan <strong>oralit</strong> agar tidak dehidrasi!
+              </p>
+            </div>
+          </div>
+
+          <!-- Kalkulator Berat Badan Ideal (Rumus Broca) -->
+          <div class="card" style="background: #f0fdf4; border-color: #bbf7d0;">
+            <h3 style="color: #065f46; margin-bottom: 6px;">⚖️ Kalkulator Cek Berat Badan Ideal (Rumus Broca)</h3>
+            <p style="font-size: 0.88rem; margin-bottom: 10px;">
+              Rumus: <strong>Berat Badan Ideal (kg) = [Tinggi Badan (cm) - 100] - [10% (pria) atau 15% (wanita) × (Tinggi Badan - 100)]</strong>.
+            </p>
+            <div class="calc-grid">
+              <div class="form-group">
+                <label>Jenis Kelamin:</label>
+                <select id="genderBBI">
+                  <option value="L">Laki-laki (10%)</option>
+                  <option value="P">Perempuan (15%)</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Tinggi Badan (cm):</label>
+                <input type="number" id="tinggiBBI" placeholder="Contoh: 145" min="90" max="220">
+              </div>
+              <div class="form-group">
+                <label>Berat Badan Saat Ini (kg) [Opsional]:</label>
+                <input type="number" id="beratAktual" placeholder="Contoh: 38" min="15" max="150">
+              </div>
+            </div>
+            <button class="btn btn-bab1" style="margin-top: 12px;" onclick="hitungBBI()">Hitung Berat Badan Ideal</button>
+            <div id="hasilBBI" style="margin-top: 12px; font-weight: 700; font-size: 0.92rem;"></div>
+          </div>
+
+          <!-- Keterkaitan Sistem Pencernaan dengan Sistem Tubuh Lain -->
+          <div class="card" style="background: #eff6ff; border-color: #bfdbfe;">
+            <h4 style="color: #1e40af; margin-bottom: 6px;">🔗 Keterkaitan Sistem Pencernaan dengan Sistem Tubuh Lainnya</h4>
+            <p style="font-size: 0.9rem;">
+              Sistem pencernaan tidak bekerja sendirian! Sari-sari makanan yang diserap usus halus diedarkan ke seluruh tubuh oleh <strong>Sistem Peredaran Darah</strong>. Di dalam sel tubuh, sari makanan dibakar bersama oksigen dari <strong>Sistem Pernapasan</strong> untuk menghasilkan energi penggerak <strong>Sistem Gerak (Otot & Rangka)</strong>.
+            </p>
+          </div>
+
+          <!-- Mini-Game Sortir Makanan Sehat vs Rekreasional -->
+          <div class="game-arena">
+            <h3 style="color: #065f46;">🎮 Mini-Game: Sortir Makanan Sehat vs Rekreasional!</h3>
+            <p style="font-size: 0.88rem; color: var(--text-muted);">Kelompokkan 6 jenis makanan berikut dengan tepat untuk membuka lencana <em>Detektif Makanan Sehat</em>!</p>
+            <div class="food-card-game" id="foodGameBox">
+              <div id="foodEmoji" style="font-size: 3.2rem;">🥗</div>
+              <h4 id="foodName" style="margin: 6px 0; font-size: 1.15rem;">Sayur Bening Bayam & Ikan</h4>
+              <p id="foodHint" style="font-size: 0.84rem; color: var(--text-muted); margin-bottom: 14px;">Kaya serat, zat besi, dan protein untuk pertumbuhan.</p>
+              <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+                <button class="btn btn-bab1" onclick="answerFoodGame('sehat')">✅ Makanan Bergizi Harian</button>
+                <button class="btn btn-kuis" onclick="answerFoodGame('rekreasi')">🍭 Makanan Rekreasional</button>
+              </div>
+            </div>
+            <div id="foodGameProgress" style="font-weight: 700; font-size: 0.9rem; color: #065f46;">Soal 1 dari 6 • Skor: 0</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Jurnal Refleksi Akhir Bab 1 -->
+      <div class="reflection-box">
+        <h3 style="color: #065f46; font-size: 1.05rem;">📝 Jurnal Refleksi Diri (Mindful & Meaningful) — Bab 1</h3>
+        <p style="font-size: 0.88rem; color: #047857;">Apa satu kebiasaan makan sehat yang akan kamu terapkan mulai hari ini di rumah atau di kantin SDN Sekumpul 2?</p>
+        <textarea id="refleksi-bab1" placeholder="Tuliskan refleksi belajarmu di sini..."></textarea>
+        <button class="btn btn-bab1" onclick="saveReflection('bab1')">💾 Simpan Jurnal Refleksi Bab 1</button>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         TAB 2: BAB 2 - TARIK DAN EMBUSKAN
+         ====================================================================== -->
+    <section id="tab-bab2" class="tab-section">
+      <!-- Mindful: Cek Kesiapan & Fokus Belajar -->
+      <div class="mindful-box">
+        <div class="mindful-header">
+          <span>🧘 Cek Kesiapan & Fokus Belajar (Mindful Learning) — Bab 2</span>
+        </div>
+        <p style="font-size: 0.9rem; color: #78350f;">
+          Letakkan tanganmu di atas perut dan dada. Tarik napas dalam selama 3 detik... lalu embuskan perlahan. Rasakan gerakan dadamu!
+        </p>
+        <div class="mood-grid">
+          <button class="mood-btn" onclick="selectMood(this, 'bab2')">🌬️ Napas Segar & Fokus</button>
+          <button class="mood-btn" onclick="selectMood(this, 'bab2')">💡 Siap Eksplorasi Paru-Paru</button>
+          <button class="mood-btn" onclick="selectMood(this, 'bab2')">😊 Rileks & Bahagia</button>
+        </div>
+        <div class="essential-q">
+          <strong>💡 Pertanyaan Esensial:</strong> Bagaimana perjalanan udara masuk hingga ke dalam paru-paru kita, dan mengapa menjaga udara tetap bersih sangat penting bagi kehidupan?
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="section-header">
+          <h2 class="section-title" style="color: var(--bab2);">🫁 Bab 2: Tarik dan Embuskan</h2>
+          <span class="badge-tag" style="background: var(--bab2-light); color: var(--bab2);">3 Topik Utama</span>
+        </div>
+
+        <div class="sub-tabs">
+          <button class="sub-tab-btn active" onclick="switchSubTab('bab2', 0, this)">A. Perjalanan Udara & Napas</button>
+          <button class="sub-tab-btn" onclick="switchSubTab('bab2', 1, this)">B. Udara Bersih & Penyakit</button>
+          <button class="sub-tab-btn" onclick="switchSubTab('bab2', 2, this)">C. Gaya Hidup & Bahaya Rokok</button>
+        </div>
+
+        <!-- SUB-PANEL 2A: PERJALANAN UDARA & MEKANISME INSPIRASI-EKSPIRASI -->
+        <div class="sub-panel active" id="bab2-panel-0">
+          <div class="two-col">
+            <div>
+              <h3 style="color: var(--bab2); margin-bottom: 10px;">🗺️ Jalur Perjalanan Udara (Klik untuk Detail)</h3>
+              <div class="organ-btn-list" style="justify-content: flex-start; margin-bottom: 14px;" id="respChipList">
+                <button class="organ-chip active-blue" onclick="showRespOrgan('hidung')">1. Hidung</button>
+                <button class="organ-chip" onclick="showRespOrgan('laring')">2. Laring (Epiglotis & Pita Suara)</button>
+                <button class="organ-chip" onclick="showRespOrgan('trakea')">3. Trakea</button>
+                <button class="organ-chip" onclick="showRespOrgan('bronkus')">4. Bronkus & Bronkiolus</button>
+                <button class="organ-chip" onclick="showRespOrgan('alveoli')">5. Alveoli (Pertukaran Gas)</button>
+                <button class="organ-chip" onclick="showRespOrgan('diafragma')">6. Diafragma</button>
+              </div>
+
+              <div class="info-panel blue" id="respOrganDetail">
+                <h3 style="color: var(--bab2); margin-bottom: 6px;">1. Rongga Hidung</h3>
+                <p style="font-size: 0.92rem;">
+                  Pintu masuk utama udara. Di dalam hidung terdapat <strong>rambut hidung</strong> untuk menyaring debu/kotoran, serta <strong>selaput lendir</strong> yang melembapkan dan menghangatkan suhu udara sebelum masuk ke paru-paru.
+                </p>
+              </div>
+            </div>
+
+            <!-- Simulator Interaktif Inspirasi vs Ekspirasi -->
+            <div class="lung-sim-box">
+              <h3 style="color: #0369a1;">🌬️ Simulator Napas: Inspirasi & Ekspirasi</h3>
+              <p style="font-size: 0.86rem; color: var(--text-muted);">Klik tombol di bawah untuk mengamati kerja otot diafragma dan paru-paru!</p>
+
+              <div class="lung-visual" id="lungVisual">
+                <svg viewBox="0 0 220 180" width="200" height="170">
+                  <!-- Trakea -->
+                  <rect x="103" y="10" width="14" height="45" rx="4" fill="#38bdf8"/>
+                  <!-- Paru Kiri & Kanan -->
+                  <path d="M102,52 C65,55 42,95 48,135 C52,148 95,145 102,132 Z" fill="#fb7185" stroke="#e11d48" stroke-width="2"/>
+                  <path d="M118,52 C155,55 178,95 172,135 C168,148 125,145 118,132 Z" fill="#fb7185" stroke="#e11d48" stroke-width="2"/>
+                  <!-- Diafragma -->
+                  <path id="diaphragmPath" d="M40,155 Q110,135 180,155" fill="none" stroke="#0284c7" stroke-width="6" stroke-linecap="round"/>
+                </svg>
+              </div>
+
+              <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 12px;">
+                <button class="btn btn-bab2" onclick="simulateBreath('inspirasi')">⬇️ Tarik Napas (Inspirasi)</button>
+                <button class="btn btn-outline" onclick="simulateBreath('ekspirasi')">⬆️ Embuskan Napas (Ekspirasi)</button>
+              </div>
+
+              <div id="breathExplanation" style="background: #ffffff; padding: 12px; border-radius: 12px; font-size: 0.88rem; text-align: left; border: 1px solid #bae6fd;">
+                Klik tombol <strong>Tarik Napas (Inspirasi)</strong> atau <strong>Embuskan Napas (Ekspirasi)</strong> untuk melihat cara kerja diafragma!
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SUB-PANEL 2B: BERSIH UDARANYA, SEHAT TUBUHNYA -->
+        <div class="sub-panel" id="bab2-panel-1">
+          <div class="card" style="background: #f0f9ff; border-color: #bae6fd;">
+            <h3 style="color: #0369a1; margin-bottom: 8px;">🌫️ Polutan Udara & 4 Faktor Penyebab Gangguan Pernapasan</h3>
+            <p style="font-size: 0.9rem; margin-bottom: 10px;">
+              <strong>Polutan udara</strong> adalah zat pencemar seperti asap kendaraan bermotor, asap pembakaran sampah/karhutla, debu, dan asap pabrik. Gangguan pernapasan dipengaruhi oleh 4 faktor utama:
+            </p>
+            <div class="grid-cards">
+              <div style="background: #fff; padding: 12px; border-radius: 12px; border-left: 4px solid #0284c7;">
+                <strong>1. Faktor Lingkungan:</strong> Udara tercemar asap, debu, ventilasi rumah pengap/lembap.
+              </div>
+              <div style="background: #fff; padding: 12px; border-radius: 12px; border-left: 4px solid #10b981;">
+                <strong>2. Infeksi Mikroorganisme:</strong> Serangan virus, bakteri, atau jamur pada saluran napas.
+              </div>
+              <div style="background: #fff; padding: 12px; border-radius: 12px; border-left: 4px solid #f59e0b;">
+                <strong>3. Faktor Genetik (Keturunan):</strong> Bawaan lahir seperti bakat alergi atau asma dari orang tua.
+              </div>
+              <div style="background: #fff; padding: 12px; border-radius: 12px; border-left: 4px solid #ef4444;">
+                <strong>4. Faktor Gaya Hidup:</strong> Kebiasaan merokok/vape, jarang berolahraga, kurang istirahat.
+              </div>
+            </div>
+          </div>
+
+          <h3 style="margin-bottom: 10px; color: var(--bab2);">🩺 Kenali 6 Penyakit Sistem Pernapasan (Klik Kartu untuk Membalik!)</h3>
+          <div class="grid-cards">
+            <div class="flip-card" onclick="flipCard(this)">
+              <div class="flip-card-inner">
+                <div class="flip-front"><span style="font-size: 2.2rem;">😮‍💨</span><h4>1. Asma</h4><small>Klik untuk detail</small></div>
+                <div class="flip-back blue-theme"><strong>Penyempitan Saluran Napas!</strong><br>Dipicu alergi (debu, dingin, bulu hewan). Gejala: napas berbunyi <em>mengi</em> dan sesak.</div>
+              </div>
+            </div>
+            <div class="flip-card" onclick="flipCard(this)">
+              <div class="flip-card-inner">
+                <div class="flip-front"><span style="font-size: 2.2rem;">🤧</span><h4>2. Influenza (Flu)</h4><small>Klik untuk detail</small></div>
+                <div class="flip-back blue-theme"><strong>Infeksi Virus Influenza!</strong><br>Gejala: demam, bersin, hidung tersumbat, sakit tenggorokan. Mudah menular lewat droplet.</div>
+              </div>
+            </div>
+            <div class="flip-card" onclick="flipCard(this)">
+              <div class="flip-card-inner">
+                <div class="flip-front"><span style="font-size: 2.2rem;">🫁</span><h4>3. Pneumonia</h4><small>Klik untuk detail</small></div>
+                <div class="flip-back blue-theme"><strong>Radang Paru-Paru Basah!</strong><br>Kantong alveoli meradang dan terisi cairan/nanah akibat infeksi bakteri/virus sehingga sulit bernapas.</div>
+              </div>
+            </div>
+            <div class="flip-card" onclick="flipCard(this)">
+              <div class="flip-card-inner">
+                <div class="flip-front"><span style="font-size: 2.2rem;">🦠</span><h4>4. Tuberkulosis (TBC)</h4><small>Klik untuk detail</small></div>
+                <div class="flip-back blue-theme"><strong>Bakteri <em>Mycobacterium tuberculosis</em>!</strong><br>Gejala: batuk berdahak >2 minggu, berkeringat malam hari, berat badan turun drastis.</div>
+              </div>
+            </div>
+            <div class="flip-card" onclick="flipCard(this)">
+              <div class="flip-card-inner">
+                <div class="flip-front"><span style="font-size: 2.2rem;">😷</span><h4>5. ISPA</h4><small>Klik untuk detail</small></div>
+                <div class="flip-back blue-theme"><strong>Infeksi Saluran Pernapasan Akut!</strong><br>Menyerang hidung, sinus, faring, hingga laring. Sering meningkat saat kabut asap melanda.</div>
+              </div>
+            </div>
+            <div class="flip-card" onclick="flipCard(this)">
+              <div class="flip-card-inner">
+                <div class="flip-front"><span style="font-size: 2.2rem;">🛡️</span><h4>6. Covid-19</h4><small>Klik untuk detail</small></div>
+                <div class="flip-back blue-theme"><strong>Infeksi Virus SARS-CoV-2!</strong><br>Menyerang saluran napas & paru-paru. Dicegah dengan masker, cuci tangan, vaksinasi, & pola hidup sehat.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SUB-PANEL 2C: GAYA HIDUPMU CERMIN KESEHATAN RAGAMU -->
+        <div class="sub-panel" id="bab2-panel-2">
+          <div class="card" style="background: #f8fafc;">
+            <h3 style="color: var(--bab2); margin-bottom: 8px;">📊 Kapasitas Paru-Paru & Faktor yang Memengaruhinya</h3>
+            <p style="font-size: 0.9rem; margin-bottom: 10px;">
+              <strong>Kapasitas vital paru-paru</strong> adalah volume udara maksimum yang dapat diembuskan setelah menarik napas sedalam-dalamnya (rata-rata ±3.500–4.500 mL pada orang dewasa). Faktor yang memengaruhi kapasitas paru-paru antara lain:
+            </p>
+            <ul style="margin-left: 20px; font-size: 0.9rem; color: var(--text-main);">
+              <li><strong>Usia & Jenis Kelamin:</strong> Kapasitas meningkat hingga usia dewasa muda, lalu perlahan menurun saat lansia.</li>
+              <li><strong>Aktivitas Fisik & Olahraga:</strong> Rutin berenang, lari, atau senam melatih otot pernapasan sehingga kapasitas paru-paru lebih besar.</li>
+              <li><strong>Postur & Ukuran Tubuh:</strong> Orang bertubuh tinggi dan tegap memiliki rongga dada lebih luas.</li>
+              <li><strong>Kebiasaan Merokok & Paparan Polusi:</strong> Merusak elastisitas alveoli dan menurunkan kapasitas paru-paru secara drastis.</li>
+            </ul>
+          </div>
+
+          <!-- Bahaya Rokok & Vape / Rokok Elektrik -->
+          <div class="card" style="background: #fef2f2; border: 2px solid #fecaca; margin-bottom: 0;">
+            <h3 style="color: #b91c1c; margin-bottom: 8px;">🚭 Bahaya Rokok Konvensional & Vape (Rokok Elektrik)</h3>
+            <p style="font-size: 0.9rem; margin-bottom: 14px;">
+              Baik rokok tembakau maupun <strong>vape (rokok elektrik)</strong> sama-sama berbahaya bagi paru-paru anak dan remaja! Uap vape bukanlah uap air biasa, melainkan aerosol beracun yang mengandung zat kimia berbahaya:
+            </p>
+            <div class="grid-cards" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));">
+              <div style="background: #ffffff; padding: 14px; border-radius: 14px; border-top: 4px solid #dc2626;">
+                <h4 style="color: #991b1b;">1. Nikotin</h4>
+                <p style="font-size: 0.86rem; margin-top: 4px;">Zat adiktif penyebab <strong>kecanduan berat</strong>, menyempitkan pembuluh darah, dan mengganggu perkembangan otak anak.</p>
+              </div>
+              <div style="background: #ffffff; padding: 14px; border-radius: 14px; border-top: 4px solid #1e293b;">
+                <h4 style="color: #1e293b;">2. Tar</h4>
+                <p style="font-size: 0.86rem; margin-top: 4px;">Zat lengket berwarna cokelat kehitaman yang mengendap di paru-paru, merusak silia saluran napas, dan memicu <strong>kanker paru-paru</strong>.</p>
+              </div>
+              <div style="background: #ffffff; padding: 14px; border-radius: 14px; border-top: 4px solid #d97706;">
+                <h4 style="color: #92400e;">3. Karbon Monoksida (CO)</h4>
+                <p style="font-size: 0.86rem; margin-top: 4px;">Gas beracun yang mengikat hemoglobin darah 200× lebih kuat daripada oksigen sehingga tubuh dan otak kekurangan oksigen.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Jurnal Refleksi Akhir Bab 2 -->
+      <div class="reflection-box">
+        <h3 style="color: #065f46; font-size: 1.05rem;">📝 Jurnal Refleksi Diri (Mindful & Meaningful) — Bab 2</h3>
+        <p style="font-size: 0.88rem; color: #047857;">Bagaimana caramu menjaga kesehatan paru-paru dan ikut menjaga kebersihan udara di lingkungan sekitar SDN Sekumpul 2?</p>
+        <textarea id="refleksi-bab2" placeholder="Tuliskan refleksi belajarmu di sini..."></textarea>
+        <button class="btn btn-bab2" onclick="saveReflection('bab2')">💾 Simpan Jurnal Refleksi Bab 2</button>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         TAB 3: BAB 3 - JEJAK SANG PAHLAWAN
+         ====================================================================== -->
+    <section id="tab-bab3" class="tab-section">
+      <!-- Mindful: Cek Kesiapan & Fokus Belajar -->
+      <div class="mindful-box">
+        <div class="mindful-header">
+          <span>🧘 Cek Kesiapan & Fokus Belajar (Mindful Learning) — Bab 3</span>
+        </div>
+        <p style="font-size: 0.9rem; color: #78350f;">
+          Hening sejenak dan syukuri kemerdekaan yang kita nikmati hari ini. Berkat perjuangan para pahlawan, kita bisa bersekolah dengan damai.
+        </p>
+        <div class="mood-grid">
+          <button class="mood-btn" onclick="selectMood(this, 'bab3')">🇮🇩 Bangga Jadi Anak Indonesia</button>
+          <button class="mood-btn" onclick="selectMood(this, 'bab3')">📖 Antusias Belajar Sejarah</button>
+          <button class="mood-btn" onclick="selectMood(this, 'bab3')">🫡 Hormat pada Pahlawan</button>
+        </div>
+        <div class="essential-q">
+          <strong>💡 Pertanyaan Esensial:</strong> Bagaimana perjuangan para pahlawan daerah melawan penjajahan, dan bagaimana kita meneruskan jejak perjuangan mereka di masa kini?
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="section-header">
+          <h2 class="section-title" style="color: var(--bab3);">🇮🇩 Bab 3: Jejak Sang Pahlawan</h2>
+          <span class="badge-tag" style="background: var(--bab3-light); color: var(--bab3);">3 Topik Utama</span>
+        </div>
+
+        <div class="sub-tabs">
+          <button class="sub-tab-btn active" onclick="switchSubTab('bab3', 0, this)">A. Masa Penjajahan & Politik Etis</button>
+          <button class="sub-tab-btn" onclick="switchSubTab('bab3', 1, this)">B. Para Pahlawan Daerahku</button>
+          <button class="sub-tab-btn" onclick="switchSubTab('bab3', 2, this)">C. Jejak Mereka di Masa Kini</button>
+        </div>
+
+        <!-- SUB-PANEL 3A: DAERAHKU DI MASA PENJAJAHAN -->
+        <div class="sub-panel active" id="bab3-panel-0">
+          <div class="two-col">
+            <div class="card" style="background: #fef2f2; border-color: #fecaca; margin-bottom: 0;">
+              <h3 style="color: #991b1b; margin-bottom: 8px;">⛓️ Sistem Tanam Paksa (Cultuurstelsel)</h3>
+              <p style="font-size: 0.9rem; margin-bottom: 10px;">
+                Diterapkan oleh Gubernur Jenderal Belanda <strong>Johannes van den Bosch</strong> pada tahun 1830 untuk mengisi kas Belanda yang kosong. Rakyat dipaksa menanam tanaman ekspor laku di pasar dunia (kopi, tebu, nila/tarum, teh) tanpa upah layak, hingga menimbulkan kelaparan dan kemiskinan parah.
+              </p>
+              <h4 style="color: #991b1b; margin-bottom: 6px;">✍️ Tokoh Belanda yang Mengkritik Tanam Paksa:</h4>
+              <ul style="margin-left: 18px; font-size: 0.88rem;">
+                <li><strong>Eduard Douwes Dekker (Multatuli):</strong> Menulis buku <em>Max Havelaar</em> (1860) yang membongkar penderitaan rakyat Lebak, Banten akibat tanam paksa.</li>
+                <li><strong>Conrad Theodor van Deventer:</strong> Menulis artikel <em>Een Eereschuld</em> (Utang Kehormatan), menegaskan Belanda berutang budi kepada rakyat Hindia Belanda.</li>
+                <li><strong>Pieter Brooshooft:</strong> Jurnalis Belanda yang menyuarakan pembelaan hak dan kesejahteraan rakyat pribumi.</li>
+              </ul>
+            </div>
+
+            <div class="card" style="background: #fffbeb; border-color: #fde68a; margin-bottom: 0;">
+              <h3 style="color: #92400e; margin-bottom: 8px;">⚖️ Politik Etis (Politik Balas Budi) — Trias Van Deventer</h3>
+              <p style="font-size: 0.9rem; margin-bottom: 12px;">
+                Atas desakan kaum humanis seperti Van Deventer, Ratu Belanda memberlakukan <strong>Politik Etis</strong> pada tahun 1901 yang dikenal dengan program <strong>Trias Van Deventer</strong>:
+              </p>
+              <div style="display: flex; flex-direction: column; gap: 10px;">
+                <div style="background: #fff; padding: 12px; border-radius: 12px; border-left: 4px solid #0284c7;">
+                  <strong>1. Irigasi (Pengairan):</strong> Membangun saluran pengairan untuk sawah dan perkebunan.
+                </div>
+                <div style="background: #fff; padding: 12px; border-radius: 12px; border-left: 4px solid #059669;">
+                  <strong>2. Edukasi (Pendidikan):</strong> Mendirikan sekolah-sekolah bagi rakyat pribumi. Dampak positifnya melahirkan kaum terpelajar pelopor Kebangkitan Nasional!
+                </div>
+                <div style="background: #fff; padding: 12px; border-radius: 12px; border-left: 4px solid #d97706;">
+                  <strong>3. Emigrasi (Perpindahan Penduduk):</strong> Memindahkan penduduk dari Pulau Jawa yang padat ke luar Jawa (seperti Sumatra & Kalimantan).
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SUB-PANEL 3B: PARA PAHLAWAN DAERAHKU -->
+        <div class="sub-panel" id="bab3-panel-1">
+          <div class="card" style="background: #f8fafc; margin-bottom: 16px;">
+            <h4 style="color: var(--bab3); margin-bottom: 4px;">📜 Syarat Umum Gelar Pahlawan Nasional (UU No. 20 Tahun 2009)</h4>
+            <p style="font-size: 0.88rem; color: var(--text-muted);">
+              Warga Negara Indonesia yang berjuang melawan penjajahan di wilayah NKRI, gugur atau meninggal dunia demi membela bangsa/negara, memiliki jiwa kepahlawanan, tidak pernah menyerah pada musuh, dan melakukan pengabdian yang berdampak luas bagi bangsa.
+            </p>
+          </div>
+
+          <h3 style="margin-bottom: 10px; color: var(--bab3);">🎖️ Jelajahi Profil 11 Pahlawan Nasional (Klik Kartu untuk Detail!)</h3>
+          <div class="grid-cards" id="heroesGrid"></div>
+        </div>
+
+        <!-- SUB-PANEL 3C: JEJAK MEREKA DI MASA KINI -->
+        <div class="sub-panel" id="bab3-panel-2">
+          <div class="grid-cards" style="grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); margin-bottom: 20px;">
+            <div class="card" style="border-top: 5px solid #0284c7; margin-bottom: 0;">
+              <span class="badge-tag" style="background: #e0f2fe; color: #0369a1;">13 Desember 1957</span>
+              <h3 style="margin: 8px 0 6px;">🌊 Deklarasi Djuanda</h3>
+              <p style="font-size: 0.88rem; color: var(--text-muted);">
+                Dicetuskan oleh Perdana Menteri <strong>Ir. H. Djuanda Kartawidjaja</strong>. Menyatakan bahwa laut di antara pulau-pulau Indonesia bukan pemisah, melainkan <strong>penghubung</strong> wilayah NKRI (Wawasan Nusantara), sehingga luas wilayah Indonesia bertambah 2,5 kali lipat!
+              </p>
+            </div>
+
+            <div class="card" style="border-top: 5px solid #d97706; margin-bottom: 0;">
+              <span class="badge-tag" style="background: #fef3c7; color: #92400e;">Pendidikan Nasional</span>
+              <h3 style="margin: 8px 0 6px;">🎓 Tut Wuri Handayani</h3>
+              <p style="font-size: 0.88rem; color: var(--text-muted);">
+                Semboyan dari <strong>Ki Hadjar Dewantara</strong>: <em>Ing Ngarsa Sung Tuladha</em> (di depan memberi teladan), <em>Ing Madya Mangun Karsa</em> (di tengah membangun semangat), <strong>Tut Wuri Handayani</strong> (di belakang memberi dorongan). Menjadi lambang Kementerian Pendidikan hingga kini.
+              </p>
+            </div>
+
+            <div class="card" style="border-top: 5px solid #059669; margin-bottom: 0;">
+              <span class="badge-tag" style="background: #d1fae5; color: #065f46;">Kesehatan Masyarakat</span>
+              <h3 style="margin: 8px 0 6px;">🏥 Gagasan Puskesmas</h3>
+              <p style="font-size: 0.88rem; color: var(--text-muted);">
+                Digagas oleh <strong>Dr. Johannes Leimena</strong> melalui "Rencana Bandung" agar pelayanan kesehatan terjangkau hingga ke pelosok desa. Kini kita mengenalnya sebagai <strong>Puskesmas</strong> (Pusat Kesehatan Masyarakat).
+              </p>
+            </div>
+          </div>
+
+          <div class="card" style="background: #fef2f2; border-color: #fecaca; margin-bottom: 0;">
+            <h3 style="color: #991b1b; margin-bottom: 10px;">🌟 7 Cara Menghargai Jasa Para Pahlawan di Masa Kini</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 10px; font-size: 0.9rem;">
+              <div style="background: #fff; padding: 10px 12px; border-radius: 10px;">1. Belajar dengan sungguh-sungguh dan berprestasi.</div>
+              <div style="background: #fff; padding: 10px 12px; border-radius: 10px;">2. Mengikuti upacara bendera dengan khidmat dan tertib.</div>
+              <div style="background: #fff; padding: 10px 12px; border-radius: 10px;">3. Menjaga persatuan, toleransi, dan kerukunan antar teman.</div>
+              <div style="background: #fff; padding: 10px 12px; border-radius: 10px;">4. Melestarikan budaya daerah dan bahasa Indonesia.</div>
+              <div style="background: #fff; padding: 10px 12px; border-radius: 10px;">5. Menjaga kelestarian alam dan kebersihan lingkungan.</div>
+              <div style="background: #fff; padding: 10px 12px; border-radius: 10px;">6. Bangga menggunakan produk buatan dalam negeri.</div>
+              <div style="background: #fff; padding: 10px 12px; border-radius: 10px;">7. Meneladani sikap rela berkorban, jujur, dan pantang menyerah.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Jurnal Refleksi Akhir Bab 3 -->
+      <div class="reflection-box">
+        <h3 style="color: #065f46; font-size: 1.05rem;">📝 Jurnal Refleksi Diri (Mindful & Meaningful) — Bab 3</h3>
+        <p style="font-size: 0.88rem; color: #047857;">Siapa tokoh pahlawan (seperti Pangeran Antasari dari Kalimantan Selatan atau tokoh lainnya) yang paling menginspirasimu, dan sikap baik apa yang ingin kamu tiru?</p>
+        <textarea id="refleksi-bab3" placeholder="Tuliskan refleksi belajarmu di sini..."></textarea>
+        <button class="btn btn-bab3" onclick="saveReflection('bab3')">💾 Simpan Jurnal Refleksi Bab 3</button>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         TAB 4: KUIS TANTANGAN INTERAKTIF (15 SOAL BAB 1 - 3)
+         ====================================================================== -->
+    <section id="tab-kuis" class="tab-section">
+      <div class="card">
+        <div class="section-header">
+          <h2 class="section-title" style="color: var(--kuis);">🏆 Kuis Tantangan IPAS Kelas VI (15 Soal Bab 1 - 3)</h2>
+          <span class="badge-tag" style="background: var(--kuis-light); color: #92400e;" id="quizHeaderProgress">Soal 1 / 15</span>
+        </div>
+
+        <!-- Area Soal Aktif -->
+        <div id="quizPlayArea">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 8px;">
+            <span class="badge-tag" id="quizBabTag" style="background: #dbeafe; color: #1e40af;">BAB 1</span>
+            <span style="font-weight: 700; color: var(--text-muted);" id="quizLiveScore">Skor Sementara: 0</span>
+          </div>
+
+          <h3 id="quizQuestionText" style="font-size: 1.12rem; margin-bottom: 16px; line-height: 1.5;">
+            Memuat pertanyaan...
+          </h3>
+
+          <div id="quizOptionsContainer"></div>
+
+          <div id="quizFeedbackBox" style="display: none; padding: 14px 16px; border-radius: 14px; margin-top: 14px; font-size: 0.92rem;"></div>
+
+          <div style="margin-top: 18px; display: flex; justify-content: flex-end;">
+            <button class="btn btn-kuis" id="nextQuizBtn" style="display: none;" onclick="nextQuizQuestion()">
+              Soal Berikutnya →
+            </button>
+          </div>
+        </div>
+
+        <!-- Area Hasil Akhir Kuis -->
+        <div id="quizResultArea" style="display: none; text-align: center; padding: 20px 10px;">
+          <div style="font-size: 4rem; margin-bottom: 8px;" id="resultEmoji">🎉</div>
+          <h3 style="font-size: 1.5rem; margin-bottom: 6px;">Kuis Selesai, <span id="resultStudentName">Hebat</span>!</h3>
+          <p style="font-size: 1.1rem; color: var(--text-muted); margin-bottom: 16px;">
+            Skor Akhir Kamu: <strong style="font-size: 1.8rem; color: var(--kuis);" id="finalScoreDisplay">0</strong> / 100
+          </p>
+          <p id="resultMessage" style="max-width: 540px; margin: 0 auto 20px; font-size: 0.95rem;"></p>
+          <button class="btn btn-kuis" onclick="restartQuiz()">🔄 Ulangi Kuis Tantangan</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Toast Notifikasi -->
+  <div id="toastBox" class="toast-box"></div>
+
+  <!-- Footer -->
+  <footer class="app-footer">
+    <strong>Petualangan IPAS Kelas VI: Bab 1 - 3</strong> • Media Pembelajaran Mendalam SDN Sekumpul 2 (Fase C)<br>
+    Disusun oleh <strong>Muhammad Agus Salim, S.Pd.</strong> • Sumber: Buku Siswa IPAS Kelas VI Edisi Revisi 2025
+  </footer>
+
+  <!-- ========================================================================
+       JAVASCRIPT LENGKAP (WEB AUDIO API, SIMULASI, MINI-GAME, KUIS & STORAGE)
+       ======================================================================== -->
+  <script>
+    /* ------------------------------------------------------------------------
+       1. WEB AUDIO API (EFEK SUARA OFFLINE TANPA FILE EKSTERNAL)
+       ------------------------------------------------------------------------ */
+    let soundEnabled = true;
+    let audioCtx = null;
+
+    function initAudio() {
+      if (!audioCtx) {
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        if (AudioContext) audioCtx = new AudioContext();
+      }
+      if (audioCtx && audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+    }
+
+    function playTone(type) {
+      if (!soundEnabled) return;
+      try {
+        initAudio();
+        if (!audioCtx) return;
+
+        const now = audioCtx.currentTime;
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+
+        if (type === 'click') {
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(520, now);
+          osc.frequency.exponentialRampToValueAtTime(680, now + 0.08);
+          gain.gain.setValueAtTime(0.12, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.08);
+          osc.start(now);
+          osc.stop(now + 0.08);
+        } else if (type === 'correct') {
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(523.25, now);       // C5
+          osc.frequency.setValueAtTime(659.25, now + 0.1); // E5
+          osc.frequency.setValueAtTime(783.99, now + 0.2); // G5
+          gain.gain.setValueAtTime(0.18, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.38);
+          osc.start(now);
+          osc.stop(now + 0.38);
+        } else if (type === 'wrong') {
+          osc.type = 'sawtooth';
+          osc.frequency.setValueAtTime(220, now);
+          osc.frequency.linearRampToValueAtTime(160, now + 0.25);
+          gain.gain.setValueAtTime(0.14, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.25);
+          osc.start(now);
+          osc.stop(now + 0.25);
+        } else if (type === 'badge') {
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(587.33, now);
+          osc.frequency.setValueAtTime(783.99, now + 0.12);
+          osc.frequency.setValueAtTime(1046.5, now + 0.24);
+          gain.gain.setValueAtTime(0.2, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.5);
+          osc.start(now);
+          osc.stop(now + 0.5);
+        }
+      } catch (e) {
+        // Abaikan jika browser membatasi audio
+      }
+    }
+
+    function toggleSound() {
+      soundEnabled = !soundEnabled;
+      const btn = document.getElementById('soundToggleBtn');
+      btn.textContent = soundEnabled ? '🔊 Suara: Aktif' : '🔇 Suara: Mati';
+      if (soundEnabled) playTone('click');
+    }
+
+    /* ------------------------------------------------------------------------
+       2. SISTEM TOAST & PENYIMPANAN PROGRES (LOCALSTORAGE)
+       ------------------------------------------------------------------------ */
+    let toastTimer = null;
+    function showToast(msg) {
+      const box = document.getElementById('toastBox');
+      box.textContent = msg;
+      box.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => {
+        box.classList.remove('show');
+      }, 3200);
+    }
+
+    const defaultProgress = {
+      name: '',
+      badges: {
+        mindful: false,
+        piring: false,
+        game: false,
+        napas: false,
+        pahlawan: false,
+        master: false
+      },
+      reflections: {
+        bab1: '',
+        bab2: '',
+        bab3: ''
+      }
+    };
+
+    let userProgress = JSON.parse(localStorage.getItem('ipas6_sekumpul2_v1')) || JSON.parse(JSON.stringify(defaultProgress));
+
+    function saveProgress() {
+      localStorage.setItem('ipas6_sekumpul2_v1', JSON.stringify(userProgress));
+      renderBadges();
+    }
+
+    function unlockBadge(key, title) {
+      if (!userProgress.badges[key]) {
+        userProgress.badges[key] = true;
+        saveProgress();
+        playTone('badge');
+        showToast(`🏅 Selamat! Lencana "${title}" terbuka!`);
+      }
+    }
+
+    function renderBadges() {
+      let unlockedCount = 0;
+      Object.keys(userProgress.badges).forEach(key => {
+        const el = document.getElementById('badge-' + key);
+        if (el) {
+          if (userProgress.badges[key]) {
+            el.classList.add('unlocked');
+            unlockedCount++;
+          } else {
+            el.classList.remove('unlocked');
+          }
+        }
+      });
+      document.getElementById('badgeCountText').textContent = `${unlockedCount} / 6 Lencana Terbuka`;
+    }
+
+    function saveStudentName() {
+      const val = document.getElementById('studentNameInput').value.trim();
+      userProgress.name = val;
+      saveProgress();
+      document.getElementById('greetingName').textContent = val || 'Sahabat IPAS';
+      if (val) showToast(`👋 Halo ${val}, selamat belajar!`);
+    }
+
+    function resetAllProgress() {
+      userProgress = JSON.parse(JSON.stringify(defaultProgress));
+      localStorage.removeItem('ipas6_sekumpul2_v1');
+      document.getElementById('studentNameInput').value = '';
+      document.getElementById('greetingName').textContent = 'Sahabat IPAS';
+      ['bab1', 'bab2', 'bab3'].forEach(b => {
+        const ta = document.getElementById('refleksi-' + b);
+        if (ta) ta.value = '';
+      });
+      renderBadges();
+      playTone('click');
+      showToast('🔄 Semua progres & lencana telah diatur ulang.');
+    }
+
+    /* ------------------------------------------------------------------------
+       3. NAVIGASI TAB UTAMA & SUB-TAB
+       ------------------------------------------------------------------------ */
+    function switchTab(tabName) {
+      playTone('click');
+      document.querySelectorAll('.tab-section').forEach(sec => sec.classList.remove('active'));
+      document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+
+      document.getElementById('tab-' + tabName).classList.add('active');
+      document.querySelector(`.nav-btn[data-tab="${tabName}"]`).classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function switchSubTab(bab, index, btnEl) {
+      playTone('click');
+      const parent = document.getElementById('tab-' + bab);
+      parent.querySelectorAll('.sub-tab-btn').forEach(b => b.classList.remove('active'));
+      parent.querySelectorAll('.sub-panel').forEach(p => p.classList.remove('active'));
+
+      btnEl.classList.add('active');
+      document.getElementById(`${bab}-panel-${index}`).classList.add('active');
+    }
+
+    function flipCard(cardEl) {
+      playTone('click');
+      cardEl.classList.toggle('flipped');
+    }
+
+    /* ------------------------------------------------------------------------
+       4. PEMBELAJARAN MENDALAM: MOOD & JURNAL REFLEKSI
+       ------------------------------------------------------------------------ */
+    function selectMood(btn, bab) {
+      playTone('click');
+      const grid = btn.parentElement;
+      grid.querySelectorAll('.mood-btn').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      unlockBadge('mindful', 'Pelajar Berkesadaran');
+      showToast('🧘 Kesiapan belajar tercatat! Tetap fokus ya.');
+    }
+
+    function saveReflection(bab) {
+      const val = document.getElementById('refleksi-' + bab).value.trim();
+      if (!val) {
+        playTone('wrong');
+        showToast('✍️ Tuliskan refleksi singkatmu terlebih dahulu ya!');
+        return;
+      }
+      userProgress.reflections[bab] = val;
+      saveProgress();
+      playTone('correct');
+      showToast('💾 Jurnal refleksimu berhasil disimpan!');
+    }
+
+    /* ------------------------------------------------------------------------
+       5. MATERI BAB 1: ORGAN PENCERNAAN, ISI PIRINGKU, GGL, BBI & GAME
+       ------------------------------------------------------------------------ */
+    const digestOrgans = {
+      mulut: {
+        title: '1. Mulut (Gerbang Utama Pencernaan)',
+        desc: 'Di dalam mulut terjadi <strong>pencernaan mekanis</strong> oleh gigi dan lidah yang mengunyah makanan menjadi potongan kecil, serta <strong>pencernaan kimiawi</strong> oleh air liur (enzim amilase/ptialin) yang mengubah zat tepung (amilum) menjadi gula sederhana.',
+        tag: 'Mekanis + Kimiawi'
+      },
+      kerongkongan: {
+        title: '2. Kerongkongan (Esofagus)',
+        desc: 'Saluran penghubung mulut dengan lambung. Otot dinding kerongkongan melakukan gerakan meremas dan mendorong makanan menuju lambung yang disebut <strong>gerak peristaltik</strong>.',
+        tag: 'Pencernaan Mekanis (Gerak Peristaltik)'
+      },
+      lambung: {
+        title: '3. Lambung (Pengaduk & Pemecah Protein)',
+        desc: 'Otot lambung meremas makanan secara mekanis dan mencampurnya dengan getah lambung (asam klorida/HCl untuk membunuh kuman, enzim pepsin pemecah protein, dan renin) hingga menjadi bubur halus bernama <strong>kimus (chyme)</strong>.',
+        tag: 'Mekanis + Kimiawi (Menghasilkan Kimus)'
+      },
+      hati: {
+        title: '4. Hati & Kantong Empedu (Kelenjar Pencernaan)',
+        desc: 'Hati menghasilkan <strong>cairan empedu</strong> yang ditampung di kantong empedu. Cairan empedu berfungsi memecah/mengemulsikan lemak agar mudah dicerna oleh enzim di usus halus, serta menetralkan racun.',
+        tag: 'Membantu Pencernaan Lemak'
+      },
+      usus_halus: {
+        title: '5. Usus Halus (Panjang ± 6 Meter)',
+        desc: 'Terdiri dari usus dua belas jari (duodenum), usus kosong (jejunum), dan usus penyerapan (ileum). Di sini pencernaan kimiawi disempurnakan oleh enzim pankreas & dinding usus, lalu <strong>sari-sari makanan diserap</strong> oleh jonjot usus (vili) masuk ke pembuluh darah.',
+        tag: 'Pencernaan Kimiawi & Penyerapan Sari Makanan'
+      },
+      usus_besar: {
+        title: '6. Usus Besar (Panjang ± 1,5 Meter)',
+        desc: 'Sisa makanan yang tidak tercerna masuk ke usus besar untuk <strong>penyerapan kembali air dan garam mineral</strong>. Di sini hidup bakteri baik <strong>Lactobacillus</strong> (dan <em>E. coli</em>) yang membantu membusukkan sisa makanan menjadi feses serta membentuk vitamin K.',
+        tag: 'Penyerapan Air & Peran Bakteri Lactobacillus'
+      },
+      rektum_anus: {
+        title: '7. Rektum & Anus (Proses Defekasi)',
+        desc: '<strong>Rektum</strong> adalah bagian akhir usus besar tempat penyimpanan sementara feses sebelum dikeluarkan. Ketika penuh, feses dikeluarkan melalui lubang <strong>Anus</strong> dalam proses yang disebut <strong>defekasi</strong>.',
+        tag: 'Pengeluaran Sisa Pencernaan (Defekasi)'
+      }
+    };
+
+    function showDigestOrgan(key) {
+      playTone('click');
+      const data = digestOrgans[key];
+      const box = document.getElementById('digestOrganDetail');
+      box.innerHTML = `
+        <h3 style="color: var(--bab1); margin-bottom: 6px;">${data.title}</h3>
+        <p style="font-size: 0.92rem; margin-bottom: 8px;">${data.desc}</p>
+        <span class="badge-tag" style="background: #d1fae5; color: #065f46;">${data.tag}</span>
+      `;
+      const keys = Object.keys(digestOrgans);
+      document.querySelectorAll('#digestChipList .organ-chip').forEach((chip, idx) => {
+        chip.classList.toggle('active', keys[idx] === key);
+      });
+    }
+
+    // Simulasi Isi Piringku
+    const plateState = { pokok: false, lauk: false, sayur: false, buah: false };
+    function fillPlate(part, label) {
+      playTone('click');
+      plateState[part] = true;
+      const el = document.getElementById('pq-' + part);
+      el.classList.add('filled');
+      el.innerHTML = `✅ ${label}`;
+
+      if (plateState.pokok && plateState.lauk && plateState.sayur && plateState.buah) {
+        document.getElementById('plateStatus').innerHTML = '🎉 Hebat! Piringmu sudah memenuhi pedoman gizi seimbang "Isi Piringku" Kemenkes!';
+        unlockBadge('piring', 'Koki Gizi Seimbang');
+      }
+    }
+
+    function resetPlate() {
+      playTone('click');
+      plateState.pokok = plateState.lauk = plateState.sayur = plateState.buah = false;
+      document.getElementById('pq-pokok').innerHTML = '1. Makanan Pokok<br><small>(Belum diisi)</small>';
+      document.getElementById('pq-lauk').innerHTML = '2. Lauk Pauk<br><small>(Belum diisi)</small>';
+      document.getElementById('pq-sayur').innerHTML = '3. Sayuran<br><small>(Belum diisi)</small>';
+      document.getElementById('pq-buah').innerHTML = '4. Buah-buahan<br><small>(Belum diisi)</small>';
+      document.querySelectorAll('.plate-quadrant').forEach(q => q.classList.remove('filled'));
+      document.getElementById('plateStatus').textContent = 'Lengkapi 4 bagian piring sesuai pedoman Isi Piringku!';
+    }
+
+    // Kalkulator Cek GGL (G4-G1-L5)
+    function cekGGL() {
+      const g = parseFloat(document.getElementById('inGula').value) || 0;
+      const ga = parseFloat(document.getElementById('inGaram').value) || 0;
+      const l = parseFloat(document.getElementById('inLemak').value) || 0;
+
+      let catatan = [];
+      catatan.push(g <= 50 ? `✅ Gula (${g}g ≤ 50g): Aman` : `⚠️ Gula (${g}g > 50g): Melebihi batas 4 sdm!`);
+      catatan.push(ga <= 5 ? `✅ Garam (${ga}g ≤ 5g): Aman` : `⚠️ Garam (${ga}g > 5g): Melebihi batas 1 sdt!`);
+      catatan.push(l <= 67 ? `✅ Lemak (${l}g ≤ 67g): Aman` : `⚠️ Lemak (${l}g > 67g): Melebihi batas 5 sdm!`);
+
+      const amanSemua = (g <= 50 && ga <= 5 && l <= 67);
+      playTone(amanSemua ? 'correct' : 'wrong');
+      document.getElementById('hasilGGL').innerHTML = `
+        <div style="padding: 12px; border-radius: 12px; background: ${amanSemua ? '#d1fae5' : '#fee2e2'}; color: ${amanSemua ? '#065f46' : '#991b1b'};">
+          ${catatan.join('<br>')}
+        </div>
+      `;
+    }
+
+    // Kalkulator Berat Badan Ideal (Broca)
+    function hitungBBI() {
+      const gender = document.getElementById('genderBBI').value;
+      const tb = parseFloat(document.getElementById('tinggiBBI').value);
+      const bbAktual = parseFloat(document.getElementById('beratAktual').value);
+
+      if (!tb || tb < 90) {
+        playTone('wrong');
+        showToast('📏 Masukkan tinggi badan (cm) yang valid terlebih dahulu!');
+        return;
+      }
+
+      const dasar = tb - 100;
+      const persen = gender === 'L' ? 0.10 : 0.15;
+      const bbi = (dasar - (persen * dasar)).toFixed(1);
+
+      let infoTambahan = '';
+      if (bbAktual) {
+        const selisih = (bbAktual - bbi).toFixed(1);
+        if (Math.abs(selisih) <= 3) {
+          infoTambahan = `<br>Berat badanmu saat ini (${bbAktual} kg) tergolong <strong>IDEAL</strong>! Pertahankan pola makan bergizi dan olahraga.`;
+        } else if (selisih > 3) {
+          infoTambahan = `<br>Berat badanmu (${bbAktual} kg) lebih ${selisih} kg dari ideal. Kurangi makanan tinggi gula/lemak dan perbanyak gerak fisik.`;
+        } else {
+          infoTambahan = `<br>Berat badanmu (${bbAktual} kg) kurang ${Math.abs(selisih)} kg dari ideal. Perbanyak asupan protein dan gizi seimbang.`;
+        }
+      }
+
+      playTone('correct');
+      document.getElementById('hasilBBI').innerHTML = `
+        <div style="padding: 12px; border-radius: 12px; background: #d1fae5; color: #065f46;">
+          🎯 Berat Badan Idealmu adalah <strong>${bbi} kg</strong>.${infoTambahan}
+        </div>
+      `;
+    }
+
+    // Mini-Game Sortir Makanan
+    const foodItems = [
+      { emoji: '🥗', name: 'Sayur Bening Bayam & Ikan', hint: 'Kaya serat, zat besi, dan protein untuk pertumbuhan.', type: 'sehat' },
+      { emoji: '🧋', name: 'Minuman Boba Gula Aren Jumbo', hint: 'Mengandung gula sangat tinggi (bisa melebihi 4 sdm sekali minum).', type: 'rekreasi' },
+      { emoji: '🍌', name: 'Pisang & Pepaya Segar', hint: 'Sumber vitamin dan serat alami pelancar pencernaan.', type: 'sehat' },
+      { emoji: '🍟', name: 'Keripik Kentang Ekstra Asin', hint: 'Tinggi natrium (garam) dan lemak jenuh.', type: 'rekreasi' },
+      { emoji: '🍚', name: 'Nasi Merah, Tempe Bacem & Telur', hint: 'Kombinasi karbohidrat kompleks dan protein nabati-hewani.', type: 'sehat' },
+      { emoji: '🍩', name: 'Donat Cokelat Glasir Gula', hint: 'Kudapan manis tinggi gula & lemak, dikonsumsi sesekali saja.', type: 'rekreasi' }
+    ];
+    let foodIdx = 0;
+    let foodScore = 0;
+
+    function answerFoodGame(choice) {
+      const current = foodItems[foodIdx];
+      if (choice === current.type) {
+        foodScore++;
+        playTone('correct');
+        showToast('✅ Tepat sekali! Analisis gizimu hebat.');
+      } else {
+        playTone('wrong');
+        showToast(`❌ Kurang tepat! "${current.name}" termasuk makanan ${current.type === 'sehat' ? 'bergizi harian' : 'rekreasional'}.`);
+      }
+
+      foodIdx++;
+      if (foodIdx < foodItems.length) {
+        const next = foodItems[foodIdx];
+        document.getElementById('foodEmoji').textContent = next.emoji;
+        document.getElementById('foodName').textContent = next.name;
+        document.getElementById('foodHint').textContent = next.hint;
+        document.getElementById('foodGameProgress').textContent = `Soal ${foodIdx + 1} dari ${foodItems.length} • Skor: ${foodScore}`;
+      } else {
+        document.getElementById('foodGameBox').innerHTML = `
+          <div style="font-size: 3rem;">🎉</div>
+          <h4>Permainan Sortir Selesai!</h4>
+          <p style="margin: 8px 0 14px;">Skor Akhir Kamu: <strong>${foodScore} / ${foodItems.length}</strong></p>
+          <button class="btn btn-bab1" onclick="resetFoodGame()">🔄 Mainkan Lagi</button>
+        `;
+        document.getElementById('foodGameProgress').textContent = 'Selesai!';
+        unlockBadge('game', 'Detektif Makanan Sehat');
+      }
+    }
+
+    function resetFoodGame() {
+      playTone('click');
+      foodIdx = 0;
+      foodScore = 0;
+      const first = foodItems[0];
+      document.getElementById('foodGameBox').innerHTML = `
+        <div id="foodEmoji" style="font-size: 3.2rem;">${first.emoji}</div>
+        <h4 id="foodName" style="margin: 6px 0; font-size: 1.15rem;">${first.name}</h4>
+        <p id="foodHint" style="font-size: 0.84rem; color: var(--text-muted); margin-bottom: 14px;">${first.hint}</p>
+        <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+          <button class="btn btn-bab1" onclick="answerFoodGame('sehat')">✅ Makanan Bergizi Harian</button>
+          <button class="btn btn-kuis" onclick="answerFoodGame('rekreasi')">🍭 Makanan Rekreasional</button>
+        </div>
+      `;
+      document.getElementById('foodGameProgress').textContent = `Soal 1 dari ${foodItems.length} • Skor: 0`;
+    }
+
+    /* ------------------------------------------------------------------------
+       6. MATERI BAB 2: ORGAN PERNAPASAN & SIMULATOR INSPIRASI-EKSPIRASI
+       ------------------------------------------------------------------------ */
+    const respOrgans = {
+      hidung: {
+        title: '1. Rongga Hidung',
+        desc: 'Pintu masuk utama udara. Di dalam hidung terdapat <strong>rambut hidung</strong> untuk menyaring debu/kotoran, serta <strong>selaput lendir</strong> yang melembapkan dan menghangatkan suhu udara sebelum masuk ke paru-paru.'
+      },
+      laring: {
+        title: '2. Laring (Pangkal Tenggorokan)',
+        desc: 'Menghubungkan faring dengan trakea. Di laring terdapat <strong>katup epiglotis</strong> yang menutup saluran napas saat kita menelan makanan agar tidak tersedak, serta <strong>pita suara</strong> yang bergetar menghasilkan suara.'
+      },
+      trakea: {
+        title: '3. Trakea (Batang Tenggorokan)',
+        desc: 'Pipa saluran udara berdinding cincin tulang rawan yang kokoh. Dilapisi selaput lendir dan rambut getar (<strong>silia</strong>) untuk menolak debu atau kuman yang lolos dari hidung melalui batuk atau bersin.'
+      },
+      bronkus: {
+        title: '4. Bronkus & Bronkiolus',
+        desc: '<strong>Bronkus</strong> adalah dua cabang trakea yang menuju paru-paru kanan dan kiri. Di dalam paru-paru, bronkus bercabang-cabang lagi menjadi saluran yang lebih kecil bernama <strong>bronkiolus</strong>.'
+      },
+      alveoli: {
+        title: '5. Alveoli (Gelembung Paru-Paru)',
+        desc: 'Ujung bronkiolus berupa kantong udara berdinding sangat tipis dan dikelilingi kapiler darah. Di sinilah terjadi <strong>pertukaran gas Oksigen (O₂)</strong> yang diikat darah dengan <strong>Karbon Dioksida (CO₂)</strong> yang siap diembuskan keluar.'
+      },
+      diafragma: {
+        title: '6. Otot Diafragma',
+        desc: 'Otot berbentuk kubah yang membatasi rongga dada dan rongga perut. Kontraksi dan relaksasi diafragma berperan utama mengatur volume rongga dada saat kita menarik dan mengembuskan napas.'
+      }
+    };
+
+    function showRespOrgan(key) {
+      playTone('click');
+      const data = respOrgans[key];
+      document.getElementById('respOrganDetail').innerHTML = `
+        <h3 style="color: var(--bab2); margin-bottom: 6px;">${data.title}</h3>
+        <p style="font-size: 0.92rem;">${data.desc}</p>
+      `;
+      const keys = Object.keys(respOrgans);
+      document.querySelectorAll('#respChipList .organ-chip').forEach((chip, idx) => {
+        chip.classList.toggle('active-blue', keys[idx] === key);
+      });
+    }
+
+    function simulateBreath(mode) {
+      playTone('click');
+      const visual = document.getElementById('lungVisual');
+      const diag = document.getElementById('diaphragmPath');
+      const exp = document.getElementById('breathExplanation');
+
+      if (mode === 'inspirasi') {
+        visual.classList.remove('exhale');
+        visual.classList.add('inhale');
+        diag.setAttribute('d', 'M40,165 Q110,165 180,165'); // Diafragma mendatar (kontraksi)
+        exp.innerHTML = `
+          <strong style="color: #0284c7;">⬇️ Fase INSPIRASI (Menarik Napas):</strong><br>
+          1. Otot diafragma <strong>berkontraksi dan mendatar</strong>, tulang rusuk terangkat.<br>
+          2. Rongga dada membesar, tekanan udara di paru-paru mengecil.<br>
+          3. Udara kaya <strong>Oksigen (O₂)</strong> mengalir masuk ke paru-paru.
+        `;
+      } else {
+        visual.classList.remove('inhale');
+        visual.classList.add('exhale');
+        diag.setAttribute('d', 'M40,155 Q110,130 180,155'); // Diafragma melengkung ke atas (relaksasi)
+        exp.innerHTML = `
+          <strong style="color: #0369a1;">⬆️ Fase EKSPIRASI (Mengembuskan Napas):</strong><br>
+          1. Otot diafragma <strong>berelaksasi dan melengkung ke atas</strong>, tulang rusuk turun.<br>
+          2. Rongga dada mengecil, tekanan udara di paru-paru membesar.<br>
+          3. Udara kaya <strong>Karbon Dioksida (CO₂)</strong> terdorong keluar tubuh.
+        `;
+      }
+      unlockBadge('napas', 'Penjaga Paru-Paru');
+    }
+
+    /* ------------------------------------------------------------------------
+       7. MATERI BAB 3: 11 PROFIL PAHLAWAN NASIONAL (TERMASUK PANGERAN ANTASARI)
+       ------------------------------------------------------------------------ */
+    const heroesData = [
+      {
+        name: 'Pangeran Antasari',
+        region: 'Banjar, Kalimantan Selatan',
+        icon: '⚔️',
+        highlight: true,
+        detail: 'Pemimpin Perang Banjar melawan penjajah Belanda dengan semboyan legendaris <em>"Haram Manyarah Waja Sampai Kaputing"</em> (Haram menyerah, berjuang sampai titik darah penghabisan).'
+      },
+      {
+        name: 'Ki Hadjar Dewantara',
+        region: 'Yogyakarta',
+        icon: '🎓',
+        detail: 'Bapak Pendidikan Nasional, pendiri Perguruan Taman Siswa (1922) dan pencetus semboyan <em>Tut Wuri Handayani</em>.'
+      },
+      {
+        name: 'Laksamana Malahayati',
+        region: 'Aceh',
+        icon: '⛵',
+        detail: 'Laksamana laut perempuan pertama di dunia modern yang memimpin pasukan <em>Inong Balee</em> melawan armada Belanda.'
+      },
+      {
+        name: 'H.R. Rasuna Said',
+        region: 'Sumatra Barat',
+        icon: '🎤',
+        detail: 'Singa Betina Pergerakan Kemerdekaan Indonesia yang memperjuangkan persamaan hak perempuan dan kemerdekaan lewat jurnalisme & pidato.'
+      },
+      {
+        name: 'Abdoel Moeis',
+        region: 'Sumatra Barat',
+        icon: '✒️',
+        detail: 'Sastrawan (penulis novel <em>Salah Asuhan</em>), wartawan, dan tokoh Sarekat Islam yang memperjuangkan kemerdekaan.'
+      },
+      {
+        name: 'Sam Ratulangi',
+        region: 'Sulawesi Utara',
+        icon: '🧭',
+        detail: 'Tokoh pergerakan dari Minahasa dengan filosofi kemanusiaan <em>"Si Tou Timou Tumou Tou"</em> (Manusia baru dapat disebut manusia jika sudah dapat memanusiakan manusia lain).'
+      },
+      {
+        name: 'I Gusti Ngurah Rai',
+        region: 'Bali',
+        icon: '🛡️',
+        detail: 'Pemimpin pasukan Ciung Wanara yang gugur dalam pertempuran habis-habisan (<em>Puputan Margarana</em>) di Bali tahun 1946.'
+      },
+      {
+        name: 'M. Zainuddin Abdul Madjid',
+        region: 'Nusa Tenggara Barat',
+        icon: '🕌',
+        detail: 'Ulama besar dari Lombok, pendiri organisasi Nahdlatul Wathan (NW) yang memajukan pendidikan dan perjuangan kemerdekaan.'
+      },
+      {
+        name: 'Prof. Dr. W.Z. Johannes',
+        region: 'Nusa Tenggara Timur',
+        icon: '🩺',
+        detail: 'Dokter ahli radiologi pertama Indonesia dan pejuang kemerdekaan yang berjasa besar bagi dunia kedokteran tanah air.'
+      },
+      {
+        name: 'Dr. Johannes Leimena',
+        region: 'Maluku',
+        icon: '🏥',
+        detail: 'Pahlawan nasional, Menteri Kesehatan terlama, dan penggagas konsep layanan kesehatan rakyat yang menjadi cikal bakal <strong>Puskesmas</strong>.'
+      },
+      {
+        name: 'Silas Papare',
+        region: 'Papua',
+        icon: '🕊️',
+        detail: 'Pejuang integrasi Papua ke dalam pangkuan Negara Kesatuan Republik Indonesia (NKRI) dan pendiri Partai Kemerdekaan Indonesia Irian.'
+      }
+    ];
+
+    function renderHeroes() {
+      const grid = document.getElementById('heroesGrid');
+      grid.innerHTML = heroesData.map((h, idx) => `
+        <div class="flip-card" onclick="flipHeroCard(this)">
+          <div class="flip-card-inner">
+            <div class="flip-front" style="${h.highlight ? 'border: 2px solid #dc2626; background: #fef2f2;' : ''}">
+              <span style="font-size: 2.2rem;">${h.icon}</span>
+              <h4 style="margin-top: 6px; color: ${h.highlight ? '#b91c1c' : 'var(--text-main)'};">${h.name}</h4>
+              <span class="badge-tag" style="background: #fee2e2; color: #991b1b; margin-top: 4px;">${h.region}</span>
+              <small style="margin-top: 6px; color: var(--text-muted);">Klik untuk biografi</small>
+            </div>
+            <div class="flip-back red-theme">
+              <strong>${h.name}</strong><br>
+              <span style="font-size: 0.83rem; margin-top: 4px;">${h.detail}</span>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function flipHeroCard(el) {
+      flipCard(el);
+      unlockBadge('pahlawan', 'Pejuang Muda Kalsel');
+    }
+
+    /* ------------------------------------------------------------------------
+       8. KUIS TANTANGAN INTERAKTIF (15 SOAL BAB 1 - 3)
+       ------------------------------------------------------------------------ */
+    const quizQuestions = [
+      // BAB 1 (5 Soal)
+      {
+        bab: 'BAB 1 • Sistem Pencernaan',
+        q: 'Gerakan meremas dan mendorong makanan dari kerongkongan menuju lambung disebut gerakan ....',
+        options: ['Peristaltik', 'Diafragma', 'Inspirasi', 'Defekasi'],
+        ans: 0,
+        exp: 'Otot dinding kerongkongan melakukan gerak peristaltik untuk mendorong gumpalan makanan (bolus) masuk ke lambung.'
+      },
+      {
+        bab: 'BAB 1 • Sistem Pencernaan',
+        q: 'Di dalam usus besar manusia terdapat bakteri baik yang membantu membusukkan sisa makanan menjadi feses serta membentuk vitamin K, yaitu ....',
+        options: ['Mycobacterium tuberculosis', 'Lactobacillus', 'Plasmodium', 'Influenza'],
+        ans: 1,
+        exp: 'Bakteri baik seperti Lactobacillus dan Escherichia coli membantu proses pembusukan sisa makanan di usus besar.'
+      },
+      {
+        bab: 'BAB 1 • Makanan Sehat (GGL)',
+        q: 'Menurut pedoman Kemenkes RI, batas maksimal konsumsi Gula, Garam, dan Lemak harian (G4 - G1 - L5) yang benar adalah ....',
+        options: [
+          'Gula 4 sdt, Garam 1 sdm, Lemak 5 sdt',
+          'Gula 4 sdm (50g), Garam 1 sdt (5g), Lemak 5 sdm (67g)',
+          'Gula 5 sdm, Garam 4 sdt, Lemak 1 sdm',
+          'Gula 1 sdm, Garam 5 sdt, Lemak 4 sdm'
+        ],
+        ans: 1,
+        exp: 'G4-G1-L5 berarti maksimal Gula 4 sendok makan (50g), Garam 1 sendok teh (5g), dan Lemak 5 sendok makan (67g) per hari.'
+      },
+      {
+        bab: 'BAB 1 • Isi Piringku',
+        q: 'Berdasarkan pedoman "Isi Piringku", setengah (1/2) bagian piring makan kita sebaiknya diisi dengan ....',
+        options: [
+          'Makanan pokok dan lauk pauk',
+          'Sayur-sayuran dan buah-buahan',
+          'Makanan manis dan gorengan',
+          'Nasi dan kerupuk saja'
+        ],
+        ans: 1,
+        exp: 'Dalam Isi Piringku, 50% (setengah piring) berisi sayur dan buah, sedangkan 50% lainnya berisi makanan pokok dan lauk pauk.'
+      },
+      {
+        bab: 'BAB 1 • Gangguan Pencernaan',
+        q: 'Penyakit diabetes melitus tipe 1 terjadi karena organ pankreas tidak mampu menghasilkan cukup hormon ....',
+        options: ['Adrenalin', 'Insulin', 'Amilase', 'Empedu'],
+        ans: 1,
+        exp: 'Hormon insulin berfungsi mengatur kadar gula dalam darah agar dapat diserap menjadi energi oleh sel tubuh.'
+      },
+      // BAB 2 (5 Soal)
+      {
+        bab: 'BAB 2 • Organ Pernapasan',
+        q: 'Pertukaran gas oksigen (O₂) dan karbon dioksida (CO₂) di dalam paru-paru terjadi secara difusi pada bagian ....',
+        options: ['Trakea', 'Laring', 'Alveoli', 'Rongga hidung'],
+        ans: 2,
+        exp: 'Alveoli adalah kantong-kantong udara kecil berdinding tipis yang dikelilingi pembuluh kapiler tempat pertukaran O₂ dan CO₂.'
+      },
+      {
+        bab: 'BAB 2 • Mekanisme Pernapasan',
+        q: 'Ketika kita menarik napas dalam-dalam (inspirasi), keadaan otot diafragma dan rongga dada adalah ....',
+        options: [
+          'Diafragma berkontraksi (mendatar) dan rongga dada membesar',
+          'Diafragma berelaksasi (melengkung ke atas) dan rongga dada mengecil',
+          'Diafragma diam dan tulang rusuk turun',
+          'Rongga dada mengecil sehingga udara masuk'
+        ],
+        ans: 0,
+        exp: 'Saat inspirasi, otot diafragma berkontraksi menjadi datar dan tulang rusuk terangkat sehingga rongga dada membesar dan udara masuk.'
+      },
+      {
+        bab: 'BAB 2 • Organ Pernapasan',
+        q: 'Katup pada pangkal tenggorokan (laring) yang menutup saluran pernapasan saat kita menelan makanan agar tidak tersedak adalah ....',
+        options: ['Bronkiolus', 'Epiglotis', 'Silia', 'Pleura'],
+        ans: 1,
+        exp: 'Epiglotis bekerja membuka saat bernapas dan menutup saluran napas ketika kita menelan makanan atau minuman.'
+      },
+      {
+        bab: 'BAB 2 • Gangguan Pernapasan',
+        q: 'Penyakit menular pada paru-paru yang disebabkan oleh infeksi bakteri Mycobacterium tuberculosis dengan gejala batuk lebih dari 2 minggu adalah ....',
+        options: ['Asma', 'Influenza', 'Tuberkulosis (TBC)', 'Maag'],
+        ans: 2,
+        exp: 'Tuberkulosis (TBC) disebabkan oleh bakteri Mycobacterium tuberculosis dan dapat disembuhkan dengan pengobatan teratur hingga tuntas.'
+      },
+      {
+        bab: 'BAB 2 • Bahaya Rokok & Vape',
+        q: 'Zat beracun dalam asap rokok yang mengikat hemoglobin darah jauh lebih kuat daripada oksigen sehingga tubuh kekurangan oksigen adalah ....',
+        options: ['Karbon monoksida (CO)', 'Oksigen murni', 'Vitamin C', 'Uap air'],
+        ans: 0,
+        exp: 'Karbon monoksida (CO) mengikat hemoglobin sekitar 200 kali lebih kuat daripada oksigen sehingga menghambat suplai oksigen ke otak dan tubuh.'
+      },
+      // BAB 3 (5 Soal)
+      {
+        bab: 'BAB 3 • Masa Penjajahan',
+        q: 'Tokoh Belanda yang menulis buku "Max Havelaar" dengan nama pena Multatuli untuk mengkritik penderitaan rakyat akibat Tanam Paksa adalah ....',
+        options: ['Johannes van den Bosch', 'Eduard Douwes Dekker', 'Pieter Brooshooft', 'Cornelis de Houtman'],
+        ans: 1,
+        exp: 'Eduard Douwes Dekker menggunakan nama samaran Multatuli ("Aku sudah banyak menderita") dalam novel Max Havelaar tahun 1860.'
+      },
+      {
+        bab: 'BAB 3 • Politik Etis',
+        q: 'Tiga program utama dalam kebijakan Politik Etis (Trias Van Deventer) meliputi ....',
+        options: [
+          'Irigasi, Edukasi, dan Emigrasi',
+          'Gold, Glory, dan Gospel',
+          'Kerja Rodi, Tanam Paksa, dan Sewa Tanah',
+          'Industri, Perdagangan, dan Militer'
+        ],
+        ans: 0,
+        exp: 'Trias Van Deventer terdiri atas Irigasi (pengairan), Edukasi (pendidikan), dan Emigrasi (perpindahan penduduk).'
+      },
+      {
+        bab: 'BAB 3 • Pahlawan Daerahku',
+        q: 'Pahlawan Nasional dari Banjar, Kalimantan Selatan yang memimpin Perang Banjar melawan Belanda dengan semboyan "Haram Manyarah Waja Sampai Kaputing" adalah ....',
+        options: ['I Gusti Ngurah Rai', 'Pangeran Antasari', 'Silas Papare', 'Sam Ratulangi'],
+        ans: 1,
+        exp: 'Pangeran Antasari adalah Sultan Banjar sekaligus Pahlawan Nasional kebanggaan masyarakat Kalimantan Selatan.'
+      },
+      {
+        bab: 'BAB 3 • Jejak Pahlawan',
+        q: 'Deklarasi yang dicetuskan pada 13 Desember 1957 dan menegaskan bahwa laut di antara pulau-pulau Indonesia adalah penghubung wilayah NKRI adalah ....',
+        options: ['Deklarasi Bandung', 'Deklarasi Djuanda', 'Perjanjian Linggarjati', 'Sumpah Pemuda'],
+        ans: 1,
+        exp: 'Deklarasi Djuanda (oleh Ir. H. Djuanda Kartawidjaja) menyatukan wilayah daratan dan lautan Indonesia sebagai satu kesatuan Wawasan Nusantara.'
+      },
+      {
+        bab: 'BAB 3 • Jejak Pahlawan',
+        q: 'Tokoh pahlawan nasional yang menggagas layanan kesehatan masyarakat terjangkau hingga ke desa-desa sebagai cikal bakal berdirinya Puskesmas adalah ....',
+        options: ['Dr. Johannes Leimena', 'Ki Hadjar Dewantara', 'Abdoel Moeis', 'Laksamana Malahayati'],
+        ans: 0,
+        exp: 'Dr. Johannes Leimena mencetuskan konsep pelayanan kesehatan terpadu yang menjadi dasar lahirnya Puskesmas di seluruh Indonesia.'
+      }
+    ];
+
+    let qIndex = 0;
+    let qScore = 0;
+    let qAnswered = false;
+
+    function loadQuizQuestion() {
+      qAnswered = false;
+      const item = quizQuestions[qIndex];
+      document.getElementById('quizHeaderProgress').textContent = `Soal ${qIndex + 1} / ${quizQuestions.length}`;
+      document.getElementById('quizBabTag').textContent = item.bab;
+      document.getElementById('quizLiveScore').textContent = `Skor Sementara: ${Math.round((qScore / quizQuestions.length) * 100)}`;
+      document.getElementById('quizQuestionText').textContent = `${qIndex + 1}. ${item.q}`;
+
+      const letters = ['A', 'B', 'C', 'D'];
+      const optBox = document.getElementById('quizOptionsContainer');
+      optBox.innerHTML = item.options.map((opt, idx) => `
+        <button class="quiz-option" onclick="selectQuizOption(${idx}, this)">
+          <span class="opt-letter">${letters[idx]}</span>
+          <span>${opt}</span>
+        </button>
+      `).join('');
+
+      const fb = document.getElementById('quizFeedbackBox');
+      fb.style.display = 'none';
+      document.getElementById('nextQuizBtn').style.display = 'none';
+    }
+
+    function selectQuizOption(selectedIdx, btnEl) {
+      if (qAnswered) return;
+      qAnswered = true;
+
+      const item = quizQuestions[qIndex];
+      const allBtns = document.querySelectorAll('#quizOptionsContainer .quiz-option');
+      allBtns.forEach(b => b.disabled = true);
+
+      const fb = document.getElementById('quizFeedbackBox');
+      fb.style.display = 'block';
+
+      if (selectedIdx === item.ans) {
+        qScore++;
+        btnEl.classList.add('correct');
+        playTone('correct');
+        fb.style.background = '#d1fae5';
+        fb.style.color = '#065f46';
+        fb.innerHTML = `<strong>✅ Jawaban Benar!</strong> ${item.exp}`;
+      } else {
+        btnEl.classList.add('wrong');
+        allBtns[item.ans].classList.add('correct');
+        playTone('wrong');
+        fb.style.background = '#fee2e2';
+        fb.style.color = '#991b1b';
+        fb.innerHTML = `<strong>❌ Kurang Tepat!</strong> ${item.exp}`;
+      }
+
+      document.getElementById('quizLiveScore').textContent = `Skor Sementara: ${Math.round((qScore / quizQuestions.length) * 100)}`;
+      const nextBtn = document.getElementById('nextQuizBtn');
+      nextBtn.style.display = 'inline-flex';
+      nextBtn.textContent = qIndex === quizQuestions.length - 1 ? 'Lihat Hasil Akhir 🏆' : 'Soal Berikutnya →';
+    }
+
+    function nextQuizQuestion() {
+      playTone('click');
+      qIndex++;
+      if (qIndex < quizQuestions.length) {
+        loadQuizQuestion();
+      } else {
+        showQuizFinalResult();
+      }
+    }
+
+    function showQuizFinalResult() {
+      document.getElementById('quizPlayArea').style.display = 'none';
+      document.getElementById('quizResultArea').style.display = 'block';
+
+      const finalPct = Math.round((qScore / quizQuestions.length) * 100);
+      document.getElementById('resultStudentName').textContent = userProgress.name || 'Siswa Hebat SDN Sekumpul 2';
+      document.getElementById('finalScoreDisplay').textContent = finalPct;
+
+      if (finalPct >= 80) {
+        document.getElementById('resultEmoji').textContent = '🏆';
+        document.getElementById('resultMessage').textContent = `Luar biasa! Kamu menjawab benar ${qScore} dari ${quizQuestions.length} soal. Kamu berhasil menguasai materi IPAS Kelas VI Bab 1 - 3 dengan sangat baik!`;
+        unlockBadge('master', 'Bintang IPAS Sekumpul 2');
+      } else if (finalPct >= 60) {
+        document.getElementById('resultEmoji').textContent = '🌟';
+        document.getElementById('resultMessage').textContent = `Bagus sekali! Kamu menjawab benar ${qScore} dari ${quizQuestions.length} soal. Ayo pelajari kembali kartu materi dan coba raih skor ≥ 80 untuk membuka Lencana Bintang IPAS!`;
+      } else {
+        document.getElementById('resultEmoji').textContent = '💪';
+        document.getElementById('resultMessage').textContent = `Tetap semangat! Kamu menjawab benar ${qScore} dari ${quizQuestions.length} soal. Yuk baca ulang simulasi organ dan kartu pahlawan di Bab 1–3, lalu coba kuis lagi!`;
+      }
+    }
+
+    function restartQuiz() {
+      playTone('click');
+      qIndex = 0;
+      qScore = 0;
+      document.getElementById('quizResultArea').style.display = 'none';
+      document.getElementById('quizPlayArea').style.display = 'block';
+      loadQuizQuestion();
+    }
+
+    /* ------------------------------------------------------------------------
+       9. INISIALISASI SAAT HALAMAN DIMUAT
+       ------------------------------------------------------------------------ */
+    window.addEventListener('DOMContentLoaded', () => {
+      if (userProgress.name) {
+        document.getElementById('studentNameInput').value = userProgress.name;
+        document.getElementById('greetingName').textContent = userProgress.name;
+      }
+      ['bab1', 'bab2', 'bab3'].forEach(b => {
+        if (userProgress.reflections && userProgress.reflections[b]) {
+          document.getElementById('refleksi-' + b).value = userProgress.reflections[b];
+        }
+      });
+      renderBadges();
+      renderHeroes();
+      loadQuizQuestion();
+    });
+  </script>
+</body>
+</html>
